@@ -1,7 +1,7 @@
 body {
   background: url("poza_background.jpg");
-  background-size: cover; /* Scales the image to cover the background */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   filter: contrast(1.2) brightness(1.1);
   display: flex;
@@ -13,14 +13,16 @@ body {
 
 * {
   font-family: sans-serif;
+  font-weight: 600;
   box-sizing: border-box;
 }
 
 form {
+  margin-top: -8px;
   width: 450px;
   border: 2px solid #ccc;
   border-style: inset;
-  padding: 10px;
+  padding: 9px;
   background: transparent;
   border-radius: 15px;
   backdrop-filter: blur;
@@ -129,11 +131,12 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 60px;
   padding-bottom: 60px;
 }
 
 .container .content {
+  margin-top: -450px;
   text-align: center;
 }
 

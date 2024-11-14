@@ -26,27 +26,7 @@ if ($result->num_rows === 1) {
         exit();
     }
 }else {
-    if(empty($nume)){
-        header('location: dealer_auto.php?error=Numele este obligatoriu');
-        exit();
-    }
-    else if (empty($prenume)){
-        header('location: dealer_auto.php?error=Prenumele este obligatoriu');
-        exit();
-    }
-    else if (empty($email)){
-        header('location: dealer_auto.php?error=Email-ul este obligatoriu');
-        exit();
-    }
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        header('location: dealer_auto.php?error=Email-ul nu este valid');
-        exit();
-    }
-    else if (empty($id)){
-        header('location: dealer_auto.php?error=ID-ul este obligatoriu');
-        exit();
-    }
-}
+    echo "<script>alert('Invalid login credentials. Please try again.'); window.location.href='dealer_auto.php';</script>";}
 
 $stmt->close();
 $conexiune->close();

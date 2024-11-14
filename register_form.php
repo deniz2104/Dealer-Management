@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="register.php" method="get">
+    <form action="register.php" method="post">
         <h1>Register</h1>
         <label for="nume">Nume:</label>
         <input type="text" name="nume" id="nume" required placeholder="Introduceti numele">
@@ -28,8 +28,8 @@
         <input type="text" name="id" id="id" required placeholder="...">
         
 
-        <label for="id">ID_MASINA:</label>
-        <input type="text" name="id" id="id" required placeholder="...">
+        <label for="id_masina">ID_Masina:</label>
+        <input type="text" name="id_masina" id="id_masina" required placeholder="...">
 
         <label>Role:</label>
         <select name="role" required>

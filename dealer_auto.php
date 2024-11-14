@@ -10,6 +10,7 @@
 
 <body>
     <form action="login.php" method="post">
+    
         <h1>Log in</h1>
         <label for="nume">Nume:</label>
         <input type="text" name="nume" id="nume" required placeholder="Introduceti numele">
