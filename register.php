@@ -68,6 +68,36 @@ if($result_2->num_rows > 0){
     exit();
 }
 
+$stmt_4 = $conexiune->prepare("SELECT * FROM vanzatori WHERE NUME=? AND PRENUME=?");
+$stmt_4->bind_param("ss", $nume, $prenume);
+$stmt_4->execute();
+$result_4 = $stmt_4->get_result();
+
+//TODO: ar trebui sa fac si un camp de CNP si in caz ca e acelasi nume dar nu acelasi CNP sa bag un email diferit
+//TODO: sa fac sa nu ma pot inregistra ca admin doar daca sunt Florescu Bogdan
+//TODO: un seller poate sa si dea upgrade la rol,trebuie sa indeplineasca niste cereri,i se schimba rolul in baza de date(criterii,o scrisoare de intentie care poate fi un anumit format)
+    if($result_4->num_rows >0 && $result->num_rows ==0){
+        echo "<script>alert('Error: Same name and different email. Cannot proceed with registration.'); window.location.href='register_form.php';</script>";
+        $stmt->close();
+        $stmt_1->close();
+        $stmt_2->close();
+        $stmt_3->close();
+        $stmt_4->close();
+        $conexiune->close();
+        exit();
+    }
+
+    if($result_4->num_rows===0 && $result_4->fetch_assoc()['role']==='seller'){
+        echo "<script>alert('Error: You can not enter as admin. Cannot proceed with registration. You are a seller.Please upgrade to become admin.'); window.location.href='register_form.php';</script>";
+        $stmt->close();
+        $stmt_1->close();
+        $stmt_2->close();
+        $stmt_3->close();
+        $stmt_4->close();
+        $conexiune->close();
+        exit();
+    }
+
     $insert=$conexiune->prepare("INSERT INTO vanzatori (NUME,PRENUME,EMAIL,ID_VANZATOR,role,ID_MASINA) VALUES (?,?,?,?,?,?)");
     $insert->bind_param("sssisi", $nume, $prenume, $email, $id, $role, $id_masina);
     if($insert->execute()){

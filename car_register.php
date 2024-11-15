@@ -9,7 +9,6 @@ $an = $_POST['an'];
 $id_masina=$_POST['id_masina'];
 $pret = $_POST['pret'];
 
-//TODO: sa fac cumva sa completez acolo 
 $stmt = $conexiune->prepare("SELECT * FROM masini WHERE MARCA = ? AND MODEL = ? AND CAPACITATE_MOTOR=? AND AN_FABRICATIE= ? AND ID_MASINA=? AND PRET= ?");
 $stmt->bind_param("ssiiid",$marca,$model,$capacitate,$an,$id_masina,$pret);
 $stmt->execute();
@@ -22,6 +21,10 @@ $result_1= $stmt_1->get_result();
 
     if($result_1->num_rows>0){
         echo "<script>alert('Error:You can not enter this ID'); window.location.href='car_register_form.php';</script>";
+        $stmt->close();
+        $stmt_1->close();
+        $conexiune->close();
+        exit();
     }
     else{
         $insert=$conexiune->prepare("INSERT INTO masini (MARCA,MODEL,CAPACITATE_MOTOR,AN_FABRICATIE,PRET,ID_MASINA) VALUES (?,?,?,?,?,?)");

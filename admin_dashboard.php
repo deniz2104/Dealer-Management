@@ -1,4 +1,7 @@
 <?php
+//TODO: sa pot sterge o masina inregistrata
+//TODO: sa pot sterge un angajat dar nu ma pot da pe mine afara
+//TODO: sa am un fel de meniu din care mi aleg ce doresc sa sterg 
 @include 'config.php';
 session_start();
 
@@ -24,7 +27,8 @@ if(!isset($_SESSION['admin_name'])){
    <h3>Hi, <span>admin</span></h3>
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['admin_name']); ?></span></h1>   
    <a href="dealer_auto.php" class="btn">Login</a>
-   <a href="register_form.php" class="btn">Register</a>
+   <a href="register_form.php" class="btn">Register a dealer</a>
+   <a href="car_register_form.php" class="btn">Register a car</a>
    <a href="logout.php" class="btn">Logout</a>
 </div>
 

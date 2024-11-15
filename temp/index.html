@@ -1,43 +1,38 @@
+<?php
+@include 'config.php';
+session_start();
+
+if(!isset($_SESSION['seller_name'])){
+   header('location:dealer_auto.php');
+   exit();  
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wanth=device-wanth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Register Cars</title>
+    <title>Seller Page</title>
 </head>
 
 <body>
-    <form action="car_register.php" method="post">
-        <h1>Register</h1>
-        <label for="marca">Marca:</label>
-        <input type="text" name="marca" an="marca" required placeholder="Introduceti marca">
 
+    <div class="container">
 
-        <label for="model">Model:</label>
-        <input type="text" name="model" an="model" required placeholder="Introduceti modelul">
+        <div class="content">
+            <h3>Hi, <span>seller</span></h3>
+            <h1>Welcome, <span>
+                    <?php echo htmlspecialchars($_SESSION['seller_name']); ?>
+                </span></h1>
+            <a href="dealer_auto.php" class="btn">Login</a>
+            <a href="car_register_form.php" class="btn">Register a car</a>
+            <a href="logout.php" class="btn">Logout</a>
+        </div>
 
-
-        <label for="capacitate cilindrica">Capacitate cilindrica:</label>
-        <input type="capacitate cilindrica" name="capacitate cilindrica" an="capacitate cilindrica" required
-            placeholder="1999 cm3">
-
-
-
-        <label for="an">An:</label>
-        <input type="text" name="an" an="an" required placeholder="2024">
-
-
-        <label for="pret">Pret:</label>
-        <input type="text" name="pret" an="pret" required placeholder="75000$">
-
-        <label>ID_Masina:</label>
-        <input type="text" name="id_masina" an="id_masina" required placeholder="xx">
-        <button type="submit" class="btn">Register</button>
-        <p>Already having a car with a dealer assigned?<a href="dealer_auto.php">Log in</a></p>
-        <p>Don't have a dealer for the car yet? <a href="register_form.php">Register now</a></p>
-    </form>
+    </div>
 </body>
 
 </html>

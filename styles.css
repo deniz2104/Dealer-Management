@@ -168,12 +168,13 @@ button:focus {
 
 .container .content .btn {
   cursor: pointer;
-  display: inline-block;
+  text-align: center;
+  border-radius: 40px;
   padding: 10px 30px;
   font-size: 20px;
   background: white;
   color: hsl(270, 42%, 70%);
-  margin: 0 5px;
+  margin: 0px 5px;
   text-transform: capitalize;
 }
 

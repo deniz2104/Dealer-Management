@@ -1,4 +1,6 @@
 <?php
+//TODO: sa pot sterg o inregistrare a unei masini anume
+//TODO: sa am buton de upgrade
 @include 'config.php';
 session_start();
 
@@ -6,6 +8,7 @@ if(!isset($_SESSION['seller_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,7 @@ if(!isset($_SESSION['seller_name'])){
    <h3>Hi, <span>seller</span></h3>
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['seller_name']); ?></span></h1>  
    <a href="dealer_auto.php" class="btn">Login</a>
-   <a href="register_form.php" class="btn">Register</a>
+   <a href="car_register_form.php" class="btn">Register a car</a>
    <a href="logout.php" class="btn">Logout</a>
 </div>
 
