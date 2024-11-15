@@ -36,5 +36,6 @@ $result_1= $stmt_1->get_result();
 }
     
 $stmt->close();
+$stmt_1->close();
 $conexiune->close();
 ?>
