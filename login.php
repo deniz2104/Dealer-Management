@@ -13,7 +13,12 @@ $stmt->bind_param("sssis", $nume, $prenume,$email,$id, $role);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows === 1) {
+$stmt_1 = $conexiune->prepare("SELECT * FROM vanzatori WHERE NUME = ? AND PRENUME = ? AND EMAIL=?");
+$stmt_1->bind_param("sss", $nume, $prenume,$email);
+$stmt_1->execute();
+$result_1 = $stmt_1->get_result();
+
+if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     if($user['role']==='admin'){
         $_SESSION['admin_name']=$user['NUME'] .' '.$user['PRENUME']; 

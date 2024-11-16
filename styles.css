@@ -7,8 +7,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-y: auto;
+  margin: 0;
 }
 
 * {
@@ -129,18 +130,19 @@ button:focus {
 .container {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 60px;
   padding-bottom: 60px;
 }
 
 .container .content {
-  margin-top: -450px;
+  margin-top: 0px;
   text-align: center;
 }
 
 .container .content h3 {
+  margin-top: 0;
   font-size: 30px;
   color: white;
 }
@@ -169,12 +171,13 @@ button:focus {
 .container .content .btn {
   cursor: pointer;
   text-align: center;
+  display: inline-block;
   border-radius: 40px;
-  padding: 10px 30px;
+  padding: 10px 35px;
   font-size: 20px;
+  margin: 0px 5px 10px;
   background: white;
   color: hsl(270, 42%, 70%);
-  margin: 0px 5px;
   text-transform: capitalize;
 }
 
@@ -185,4 +188,34 @@ button:focus {
 .container .content .btn:focus {
   outline: none;
   box-shadow: 0 0 0 5px hsl(300, 100%, 50%);
+}
+
+.table-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+table {
+  width: fit-content;
+  border-collapse: collapse;
+  border: none;
+  float: right;
+}
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-radius: 40px;
+  border: none;
+}
+th {
+  color: white;
+  background-color: hsl(270, 42%, 70%);
+  font-weight: 800;
+}
+
+tr {
+  color: white;
 }
