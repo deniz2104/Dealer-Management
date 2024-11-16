@@ -22,7 +22,6 @@ if($result_3->num_rows===0){
     exit();
 }
 
-//TODO: sa verific ca mail ul apartine unei persoane unice,gen sa pot avea aceleasi email pentru acelasi nume si prenume si sa previn asignarea unui email diferit la ala si invers
 $stmt = $conexiune->prepare("SELECT * FROM vanzatori WHERE EMAIL=?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
