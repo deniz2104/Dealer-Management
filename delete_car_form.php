@@ -1,5 +1,4 @@
 <?php
-//TODO: back button
 @include 'config.php';
 session_start();
 
@@ -33,7 +32,7 @@ if(!$result){
         <h3>Delete <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>
-        <input type="text" name="id_masina" required placeholder="xx">
+        <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
         <button type="submit" class="btn">Delete car</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
@@ -59,9 +58,9 @@ if(!$result){
    </div>
 </div>
 <?php if ($is_admin): ?>
-        <a href="admin_dashboard.php" class="btn">Back to Admin Dashboard</a>
+        <a href="admin_dashboard.php" class="btn">Admin Dashboard</a>
     <?php elseif ($is_seller): ?>
-        <a href="seller_dashboard.php" class="btn">Back to Seller Dashboard</a>
+        <a href="seller_dashboard.php" class="btn">Seller Dashboard</a>
     <?php endif; ?>
 </div>
 </body>

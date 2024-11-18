@@ -14,20 +14,20 @@
     
         <h1>Log in</h1>
         <label for="nume">Nume:</label>
-        <input type="text" name="nume" id="nume" required placeholder="Introduceti numele">
+        <input type="text" name="nume" id="nume" required placeholder="Introduceti numele" autocomplete="off">
         <br>
 
         <label for="prenume">Prenume:</label>
-        <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele">
+        <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele" autocomplete="off">
         <br>
 
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required placeholder="example@gmail.com">
+        <input type="email" name="email" id="email" required placeholder="example@gmail.com" autocomplete="off">
         <br>
 
 
         <label for="id">ID:</label>
-        <input type="text" name="id" id="id" required placeholder="...">
+        <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
         <br>
 
         <label>Role:</label>

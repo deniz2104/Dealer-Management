@@ -33,14 +33,14 @@ if(!$result){
         <h3>Delete <span>dealer</span></h3>
 
         <label for="nume">Nume:</label>
-        <input type="text" name="nume" id="nume" required placeholder="Introduceti numele">
+        <input type="text" name="nume" id="nume" required placeholder="Introduceti numele" autocomplete="off">
         
 
         <label for="prenume">Prenume:</label>
-        <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele">
+        <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele" autocomplete="off">
 
         <label for="id">ID:</label>
-        <input type="text" name="id" id="id" required placeholder="...">
+        <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
         <button type="submit" class="btn">Delete dealer</button>
         <h3>Want to register a dealer?<a href="register.php"><span>Register dealer</span></a></h3>
     </form>
@@ -65,7 +65,7 @@ if(!$result){
     </table>
    </div>
     </div>
-<h3>Want to go back?<a href="admin_dashboard.php"><span>◀️</span></a></h3>
+<a href="admin_dashboard.php">Admin Dashboard</a>
 </div>
 </body>
 

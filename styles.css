@@ -62,6 +62,11 @@ input::placeholder {
   padding-left: 5px;
 }
 
+input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
 label {
   font-size: 20px;
   padding: 15px;
