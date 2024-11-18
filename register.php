@@ -73,7 +73,6 @@ $stmt_4->execute();
 $result_4 = $stmt_4->get_result();
 
 //TODO: ar trebui sa fac si un camp de CNP si in caz ca e acelasi nume dar nu acelasi CNP sa bag un email diferit
-//TODO: sa fac sa nu ma pot inregistra ca admin doar daca sunt Florescu Bogdan
 //TODO: un seller poate sa si dea upgrade la rol,trebuie sa indeplineasca niste cereri,i se schimba rolul in baza de date(criterii,o scrisoare de intentie care poate fi un anumit format)
     if($result_4->num_rows >0 && $result->num_rows ==0){
         echo "<script>alert('Error: Same name and different email. Cannot proceed with registration.'); window.location.href='register_form.php';</script>";

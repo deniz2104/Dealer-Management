@@ -1,11 +1,14 @@
 <?php
+//TODO: back button
 @include 'config.php';
 session_start();
 
-if(!isset($_SESSION['seller_name'])){
+if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
+$is_admin = isset($_SESSION['admin_name']);
+$is_seller = isset($_SESSION['seller_name']);
 $query="SELECT ID_MASINA,MARCA,MODEL FROM masini";
 $result = $conexiune->query($query);
 if(!$result){
@@ -54,7 +57,12 @@ if(!$result){
         </tbody>
     </table>
    </div>
-    </div>
+</div>
+<?php if ($is_admin): ?>
+        <a href="admin_dashboard.php" class="btn">Back to Admin Dashboard</a>
+    <?php elseif ($is_seller): ?>
+        <a href="seller_dashboard.php" class="btn">Back to Seller Dashboard</a>
+    <?php endif; ?>
 </div>
 </body>
 

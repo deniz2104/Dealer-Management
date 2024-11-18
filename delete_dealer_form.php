@@ -1,7 +1,6 @@
 <?php
 //TODO: sa nu ma pot sterge pe mine
 //TODO: sa nu ma pot vizualiza
-//TODO: sa am butoane de back peste tot
 @include 'config.php';
 session_start();
 
@@ -39,12 +38,6 @@ if(!$result){
 
         <label for="prenume">Prenume:</label>
         <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele">
-        
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required placeholder="example@gmail.com">
-        
-
 
         <label for="id">ID:</label>
         <input type="text" name="id" id="id" required placeholder="...">
@@ -72,6 +65,7 @@ if(!$result){
     </table>
    </div>
     </div>
+<h3>Want to go back?<a href="admin_dashboard.php"><span>◀️</span></a></h3>
 </div>
 </body>
 

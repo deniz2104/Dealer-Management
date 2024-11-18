@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!TODO: Loader>
+<!TODO: Loader pentru o prima pagina inainte de asta unde aleg intre client si (dealer/admin)>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

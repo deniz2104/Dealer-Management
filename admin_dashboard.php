@@ -1,7 +1,6 @@
 <?php
-//TODO: sa pot sterge o masina inregistrata
-//TODO: sa pot sterge un angajat dar nu ma pot da pe mine afara
-//TODO: sa am un fel de meniu din care mi aleg ce doresc sa sterg 
+//TODO: Loader
+//TODO: Sa nu afiseze numele cu care se conecteaza 
 @include 'config.php';
 session_start();
 
@@ -37,6 +36,7 @@ if(!$result){
    <a href="car_register_form.php" class="btn">Register a car</a>
    <a href="delete_car_form.php" class="btn">Delete a car</a>
    <a href="delete_dealer_form.php" class="btn">Delete a dealer</a>
+   <a href="edit_car_form.php" class="btn">Edit a car</a>
    <a href="logout.php" class="btn">Logout</a>
    <div class="table-container">
    <table>

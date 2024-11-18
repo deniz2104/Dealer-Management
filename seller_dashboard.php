@@ -1,6 +1,6 @@
 <?php
-//TODO: sa pot sterg o inregistrare a unei masini anume
-//TODO: sa am buton de upgrade
+//TODO: Loader
+//TODO: Sa nu afiseze numele cu care se conecteaza 
 @include 'config.php';
 session_start();
 
@@ -33,6 +33,7 @@ if(!$result){
    <a href="dealer_auto.php" class="btn">Login</a>
    <a href="car_register_form.php" class="btn">Register a car</a>
    <a href="delete_car_form.php" class="btn">Delete a car</a>
+   <a href="edit_car_form.php" class="btn">Edit a car</a>
    <a href="upgrade_role_form.php" class="btn">Upgrade to admin role</a>
    <a href="logout.php" class="btn">Logout</a>
    <div class="table-container">
