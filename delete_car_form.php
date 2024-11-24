@@ -25,6 +25,19 @@ if(!$result){
     <title>Delete Cars</title>
 </head>
 
+<header>
+        <nav class="navbar">
+            <ul>
+            <?php if ($is_admin): ?>
+        <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+    <?php elseif ($is_seller): ?>
+        <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
+    <?php endif; ?>
+    <li><a href="table_of_cars.php">Cars list</a></li>
+            </ul>
+        </nav>
+</header>
+
 <body>
 <div class="container">
     <div class="content">
@@ -36,32 +49,7 @@ if(!$result){
         <button type="submit" class="btn">Delete car</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
-    <div class="table-container">
-   <table>
-        <thead>
-            <tr>
-                <th>ID_Masina</th>
-                <th>Marca</th>
-                <th>Model</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['ID_MASINA']); ?></td>
-                    <td><?php echo htmlspecialchars($row['MARCA']); ?></td>
-                    <td><?php echo htmlspecialchars($row['MODEL']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-   </div>
 </div>
-<?php if ($is_admin): ?>
-        <a href="admin_dashboard.php" class="btn">Admin Dashboard</a>
-    <?php elseif ($is_seller): ?>
-        <a href="seller_dashboard.php" class="btn">Seller Dashboard</a>
-    <?php endif; ?>
 </div>
 </body>
 
