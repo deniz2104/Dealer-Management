@@ -122,34 +122,6 @@ select:focus {
   box-shadow: 0 0 5px hsl(270, 42%, 70%);
 }
 
-ul {
-  background: transparent;
-  padding-left: 15px;
-  margin: 0;
-}
-
-ul li {
-  display: inline-block;
-  position: relative;
-  color: hsl(270, 42%, 70%);
-  border-radius: 40px;
-  font-weight: 800;
-  margin: 5px;
-}
-
-.role li {
-  display: block;
-  padding: px;
-}
-
-ul li:hover {
-  background: white;
-}
-
-ul li:active {
-  background: hsl(270, 42%, 70%);
-}
-
 button {
   cursor: pointer;
   display: block;
@@ -316,7 +288,7 @@ table {
   width: fit-content;
   border-collapse: collapse;
   border: none;
-  float: right;
+  float: left;
 }
 th,
 td {

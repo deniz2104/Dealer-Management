@@ -26,6 +26,16 @@ if(!$result){
     <title>Delete Dealer</title>
 </head>
 
+
+<header>
+        <nav class="navbar">
+            <ul>
+            <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+            <li><a href="table_of_dealers.php">Dealers list</a></li>
+            </ul>
+        </nav>
+</header>
+
 <body>
 <div class="container">
     <div class="content">
@@ -44,28 +54,7 @@ if(!$result){
         <button type="submit" class="btn">Delete dealer</button>
         <h3>Want to register a dealer?<a href="register.php"><span>Register dealer</span></a></h3>
     </form>
-    <div class="table-container">
-   <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nume</th>
-                <th>Prenume</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['ID_VANZATOR']); ?></td>
-                    <td><?php echo htmlspecialchars($row['NUME']); ?></td>
-                    <td><?php echo htmlspecialchars($row['PRENUME']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-   </div>
     </div>
-<a href="admin_dashboard.php">Admin Dashboard</a>
 </div>
 </body>
 

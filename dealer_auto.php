@@ -1,3 +1,16 @@
+<?php
+session_start();
+@include 'config.php';
+
+if (isset($_SESSION['admin_name'])){
+    header('location:admin_dashboard.php');
+    exit();
+} elseif (isset($_SESSION['seller_name'])) {
+    header('location:seller_dashboard.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!TODO: Loader>
