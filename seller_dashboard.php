@@ -15,6 +15,17 @@ if(!$result){
 }
 ?>
 
+<header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="dealer_auto.php">Cars list</a></li>
+                <li><a href="car_register_form.php">Register a car</a></li>
+                <li><a href="delete_car_form.php">Delete a car</a></li>
+                <li><a href="edit_car_form.php">Edit a car</a></li>
+            </ul>
+        </nav>
+</header>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +42,6 @@ if(!$result){
    <h3>Hi, <span>seller</span></h3>
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['seller_name']); ?></span></h1>  
    <a href="dealer_auto.php" class="btn">Login</a>
-   <a href="car_register_form.php" class="btn">Register a car</a>
-   <a href="delete_car_form.php" class="btn">Delete a car</a>
-   <a href="edit_car_form.php" class="btn">Edit a car</a>
    <a href="upgrade_role_form.php" class="btn">Upgrade to admin role</a>
    <a href="logout.php" class="btn">Logout</a>
    <div class="table-container">

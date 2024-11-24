@@ -1,3 +1,15 @@
+<?php
+@include 'config.php';
+session_start();
+
+if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
+   header('location:dealer_auto.php');
+   exit();  
+}
+$is_admin = isset($_SESSION['admin_name']);
+$is_seller = isset($_SESSION['seller_name']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +19,18 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Register Cars</title>
 </head>
+
+<header>
+        <nav class="navbar">
+            <ul>
+            <?php if ($is_admin): ?>
+        <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+    <?php elseif ($is_seller): ?>
+        <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
+    <?php endif; ?>
+            </ul>
+        </nav>
+</header>
 
 <body>
     <form action="car_register.php" method="post">

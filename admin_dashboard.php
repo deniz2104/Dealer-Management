@@ -26,16 +26,33 @@ if(!$result){
 </head>
 <body>
 
+<header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="dealer_auto.php">Dealers list</a></li>
+                <li> <a href="#">Register +</a>
+                    <ul>
+                        <li><a href="car_register_form.php">Register a car</a></li>
+                        <li><a href="register_form.php">Register a dealer</a></li>
+                    </ul>
+                </li>
+                <li> <a href="#">Delete +</a>
+                    <ul>
+                        <li><a href="delete_car_form.php">Delete a car</a></li>
+                        <li><a href="delete_dealer_form.php">Delete a dealer</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+</header>
+
 <div class="container">
 
 <div class="content">
    <h3>Hi, <span>admin</span></h3>
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['admin_name']); ?></span></h1>   
    <a href="dealer_auto.php" class="btn">Login</a>
-   <a href="register_form.php" class="btn">Register a dealer</a>
-   <a href="car_register_form.php" class="btn">Register a car</a>
-   <a href="delete_car_form.php" class="btn">Delete a car</a>
-   <a href="delete_dealer_form.php" class="btn">Delete a dealer</a>
    <a href="edit_car_form.php" class="btn">Edit a car</a>
    <a href="logout.php" class="btn">Logout</a>
    <div class="table-container">

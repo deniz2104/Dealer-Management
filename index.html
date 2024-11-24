@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<!TODO: Loader>
-    <!TODO: Loader pentru o prima pagina inainte de asta unde aleg intre client si (dealer/admin)>
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="styles.css">
-            <title>Log in Form</title>
-        </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Admin Page</title>
+</head>
 
-        <body>
-            <form action="login.php" method="post">
+<body>
 
-                <h1>Log in</h1>
-                <label for="nume">Nume:</label>
-                <input type="text" name="nume" id="nume" required placeholder="Introduceti numele" autocomplete="off">
-                <br>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="#">Dealers list</a></li>
+                <li> <a href="#">Register +</a>
+                    <ul>
+                        <li><a href="car_register_form.php">Register a car</a></li>
+                        <li><a href="register_form.php">Register a dealer</a></li>
+                    </ul>
+                </li>
+                <li> <a href="#">Delete +</a>
+                    <ul>
+                        <li><a href="delete_car_form.php">Delete a car</a></li>
+                        <li><a href="delete_dealer_form.php">Delete a dealer</a></li>
+                    </ul>
+                </li>
 
-                <label for="prenume">Prenume:</label>
-                <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele"
-                    autocomplete="off">
-                <br>
+            </ul>
+        </nav>
+    </header>
 
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required placeholder="example@gmail.com" autocomplete="off">
-                <br>
+    <div class="container">
 
+        <div class="content">
+            <h3>Hi, <span>admin</span></h3>
+            <h1>Welcome, <span>
+                    <?php echo htmlspecialchars($_SESSION['admin_name']); ?>
+                </span></h1>
+            <a href="dealer_auto.php" class="btn">Login</a>
+            <a href="edit_car_form.php" class="btn">Edit a car</a>
+            <a href="logout.php" class="btn">Logout</a>
+        </div>
 
-                <label for="id">ID:</label>
-                <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
-                <br>
-
-                <label>Role:</label>
-                <br>
-                <select name="role" required>
-                    <option value="admin">Admin</option>
-                    <option value="seller">Seller</option>
-                </select>
-                <button type="submit" class="btn">Log in</button>
-                <p>Don't have an account?<a href="register_form.php">Register now</a></p>
-            </form>
-        </body>
+    </div>
+</body>
 
 </html>

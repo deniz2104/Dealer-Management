@@ -8,6 +8,14 @@
     <title>Register</title>
 </head>
 
+<header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="admin_dashboard.php">Back to dashboard</a></li>
+            </ul>
+        </nav>
+</header>
+
 <body>
     <form action="register.php" method="post">
         <h1>Register</h1>
