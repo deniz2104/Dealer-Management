@@ -23,6 +23,15 @@ if(!$result){
     <title>List of dealers</title>
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+            <ul>
+            <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+            </ul>
+    </nav>
+</header>
+
 <div class="container">
    <table>
         <thead>

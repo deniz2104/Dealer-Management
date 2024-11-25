@@ -29,7 +29,8 @@ if(!$result){
 <header>
         <nav class="navbar">
             <ul>
-                <li> <a href="dealer_auto.php">Dealers list</a></li>
+                <li> <a href="table_of_cars.php">Cars list</a></li>
+                <li> <a href="table_of_dealers.php">Dealers list</a></li>
                 <li> <a href="#">Register +</a>
                     <ul>
                         <li><a href="car_register_form.php">Register a car</a></li>
@@ -55,26 +56,6 @@ if(!$result){
    <a href="dealer_auto.php" class="btn">Login</a>
    <a href="edit_car_form.php" class="btn">Edit a car</a>
    <a href="logout.php" class="btn">Logout</a>
-   <div class="table-container">
-   <table>
-        <thead>
-            <tr>
-                <th>Nume</th>
-                <th>Prenume</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['NUME']); ?></td>
-                    <td><?php echo htmlspecialchars($row['PRENUME']); ?></td>
-                    <td><?php echo htmlspecialchars($row['EMAIL']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-   </div>
 </div>
 
 </div>

@@ -122,6 +122,29 @@ select:focus {
   box-shadow: 0 0 5px hsl(270, 42%, 70%);
 }
 
+ul {
+  background: transparent;
+  padding-left: 15px;
+  margin: 0;
+}
+
+ul li {
+  display: inline-block;
+  position: relative;
+  color: hsl(270, 42%, 70%);
+  border-radius: 40px;
+  font-weight: 800;
+  margin: 5px;
+}
+
+ul li:hover {
+  background: white;
+}
+
+ul li:active {
+  background: hsl(270, 42%, 70%);
+}
+
 button {
   cursor: pointer;
   display: block;
@@ -147,12 +170,10 @@ header {
   left: 0;
   right: 0;
   background: transparent;
-  padding: 13px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  padding-bottom: 10px;
 }
 
 header .navbar ul li {
@@ -167,6 +188,7 @@ header .navbar ul li a {
   border-radius: 40px;
   padding: 8px;
   display: block;
+  font-weight: 700;
 }
 
 header .navbar ul li a:hover {
