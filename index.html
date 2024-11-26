@@ -1,14 +1,15 @@
 <?php
+//TODO: Loader
+//TODO: Sa nu afiseze numele cu care se conecteaza 
 @include 'config.php';
 session_start();
 
-if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
+if(!isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
-$is_admin = isset($_SESSION['admin_name']);
-$is_seller = isset($_SESSION['seller_name']);
-$query="SELECT ID_MASINA,MARCA,MODEL FROM masini";
+
+$query="SELECT NUME,PRENUME,EMAIL FROM vanzatori";
 $result = $conexiune->query($query);
 if(!$result){
    die("Error: ".mysqli_error($conexiune));
@@ -21,8 +22,8 @@ if(!$result){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles_for_tables.css">
-    <title>List of cars</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Admin Page</title>
 </head>
 
 <body>
@@ -30,40 +31,37 @@ if(!$result){
     <header>
         <nav class="navbar">
             <ul>
-                <?php if ($is_admin): ?>
-                <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
-                <?php elseif ($is_seller): ?>
-                <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
-                <?php endif; ?>
+                <li> <a href="table_of_cars.php">Cars list</a></li>
+                <li> <a href="table_of_dealers.php">Dealers list</a></li>
+                <li> <a href="#">Register +</a>
+                    <ul>
+                        <li><a href="car_register_form.php">Register a car</a></li>
+                        <li><a href="register_form.php">Register a dealer</a></li>
+                    </ul>
+                </li>
+                <li> <a href="#">Delete +</a>
+                    <ul>
+                        <li><a href="delete_car_form.php">Delete a car</a></li>
+                        <li><a href="delete_dealer_form.php">Delete a dealer</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
     </header>
 
     <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID_MASINA</th>
-                    <th>MARCA</th>
-                    <th>MODEL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td>
-                        <?php echo htmlspecialchars($row['ID_MASINA']); ?>
-                    </td>
-                    <td>
-                        <?php echo htmlspecialchars($row['MARCA']); ?>
-                    </td>
-                    <td>
-                        <?php echo htmlspecialchars($row['MODEL']); ?>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+
+        <div class="content">
+            <h3>Hi, <span>admin</span></h3>
+            <h1>Welcome, <span>
+                    <?php echo htmlspecialchars($_SESSION['admin_name']); ?>
+                </span></h1>
+            <a href="dealer_auto.php" class="btn">Login</a>
+            <a href="edit_car_form.php" class="btn">Edit a car</a>
+            <a href="logout.php" class="btn">Logout</a>
+        </div>
+
     </div>
 </body>
 

@@ -15,6 +15,10 @@ if (isset($_SESSION['admin_name'])){
 <html lang="en">
 <!TODO: Loader>
 <!TODO: Loader pentru o prima pagina inainte de asta unde aleg intre client si (dealer/admin)>
+<!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat si sa am real time fetching cand dau refresh>
+<!TODO: Sa fac o pagina de prezentare a firmei,testimoniale,aspect general,posibilitate de login ca client sau ca dealer>
+<!TODO: Loader diferit fata de cel din navigarea dintre pagini la dealeri>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

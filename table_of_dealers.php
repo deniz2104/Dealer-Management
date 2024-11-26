@@ -1,4 +1,5 @@
 <?php
+//TODO: sa am o chestie de genul 5 itemi per pagina si sa pot da pagina spre exemplu
 @include 'config.php';
 session_start();
 
