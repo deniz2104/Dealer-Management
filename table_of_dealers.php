@@ -1,4 +1,5 @@
 <?php
+//TODO: sa am o chestie de genul 5 itemi per pagina si sa pot da pagina spre exemplu
 @include 'config.php';
 session_start();
 
@@ -23,6 +24,15 @@ if(!$result){
     <title>List of dealers</title>
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+            <ul>
+            <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+            </ul>
+    </nav>
+</header>
+
 <div class="container">
    <table>
         <thead>

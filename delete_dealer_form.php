@@ -1,6 +1,6 @@
 <?php
 //TODO: sa nu ma pot sterge pe mine
-//TODO: sa nu ma pot vizualiza
+//TODO: sa nu ma pot vizualiza pe mine
 @include 'config.php';
 session_start();
 

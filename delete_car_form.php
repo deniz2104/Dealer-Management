@@ -1,4 +1,6 @@
 <?php
+//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
+//TODO:textbox uri in care sa adaug si el sa mi afiseze un rezulat/mai mutle
 @include 'config.php';
 session_start();
 
