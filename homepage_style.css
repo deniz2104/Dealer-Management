@@ -132,19 +132,24 @@ body {
 }
 
 .heading-about {
-  width: 90%;
+  width: 100%;
+  position: absolute;
+  top: 8%;
   display: flex;
-  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
   align-items: center;
   flex-direction: column;
   text-align: center;
   margin: 20px auto;
+  z-index: 1;
 }
 
 .heading-about h1 {
   font-size: 50px;
+  margin: 0;
   color: hsl(270, 42%, 70%);
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -161,41 +166,43 @@ body {
 .heading-about p {
   font-size: 18px;
   font-weight: 700;
-  line-height: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 0;
   color: white;
 }
 
 .container-about {
-  width: 90%;
-  margin: 0 auto;
+  position: absolute;
+  bottom: 17%;
+  width: 100%;
+  margin: 20px auto;
   padding: 10px 20px;
 }
 
 .about {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  text-align: center;
+  gap: 20px;
 }
 
 .about-image {
-  flex: 1;
-  margin-right: 40px;
   overflow: hidden;
+  float: left;
 }
 
 .about-image img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  transition: 0.5 ease;
+  max-width: 90%;
+  object-fit: cover;
+  transition: width 2s, height 2s, transform 2s, linear 2s;
 }
 .about-image:hover img {
-  transform: scale(1.2);
+  transform: scale(0.9);
 }
 .about-content {
   flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: left;
 }
 
 .about-content h2 {
@@ -205,7 +212,6 @@ body {
 }
 
 .about-content p {
-  line-height: 1.5;
   color: white;
   font-size: 19px;
 }
