@@ -18,6 +18,8 @@ if (isset($_SESSION['admin_name'])){
 <!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat si sa am real time fetching cand dau refresh>
 <!TODO: Sa fac o pagina de prezentare a firmei,testimoniale,aspect general,posibilitate de login ca client sau ca dealer>
 <!TODO: Loader diferit fata de cel din navigarea dintre pagini la dealeri>
+<!TODO: Sa am formularul colorat border,ceva in aceaasi nuanta>
+<!TODO: Sa am un buton back to homepage>
 
 <head>
     <meta charset="UTF-8">
