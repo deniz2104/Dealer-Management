@@ -39,6 +39,10 @@ body {
   justify-content: space-between;
 }
 
+.logo {
+  width: 0px;
+}
+
 .navbar ul li {
   list-style: none;
   display: inline-block;
@@ -160,7 +164,7 @@ body {
   height: 4px;
   display: block;
   margin: 0 auto;
-  background-color: hsl(270, 42%, 70%);
+  background-color: #b392d3;
 }
 
 .heading-about p {
@@ -214,4 +218,95 @@ body {
 .about-content p {
   color: white;
   font-size: 19px;
+}
+
+.services-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#services-section {
+  min-height: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#services-section h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+#services-section p {
+  width: 60%;
+  font-size: 1rem;
+  color: hsl(270, 42%, 70%);
+  line-height: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+  z-index: 9;
+  margin-top: 20px;
+}
+
+.cards .card {
+  height: 280px;
+  width: 240px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: white;
+  border-radius: 40px;
+  position: relative;
+}
+
+.cards .card::before {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 40px;
+  background: hsl(270, 42%, 70%);
+  transition: width 2s, height 2s, transform 2s, linear 2s;
+  transform: rotate(0deg);
+  z-index: -1;
+}
+
+.cards .card:hover.card::before {
+  transform: rotate(10deg);
+}
+
+.cards .card i {
+  font-size: 2.5rem;
+  color: hsl(270, 42%, 70%);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.cards .card .description h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.cards .card p {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  width: 100%;
 }
