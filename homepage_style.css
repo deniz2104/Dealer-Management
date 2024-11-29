@@ -310,3 +310,100 @@ body {
   font-weight: 700;
   width: 100%;
 }
+
+.wrapper-reviews {
+  background-color: hsl(270, 42%, 70%);
+  position: absolute;
+  width: 80vw;
+  max-width: 41em;
+  min-height: 25em;
+  border-radius: 40px;
+  transform: translate(-50%, -50);
+  bottom: 20%;
+  box-shadow: 0 1.8em 3em rgba(0, 0, 0, 0.8);
+}
+
+.wrapper-reviews h2 {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  padding: 10px;
+  margin-bottom: 1em;
+}
+
+.testimonial-container {
+  transition: width 2s, height 2s, transform 2s, linear 2s;
+  width: 85%;
+  height: 100%;
+  margin: auto;
+  padding: 1.8em 1.2em;
+}
+
+.hidden {
+  transform: translateX(20px);
+}
+
+.wrapper-reviews button {
+  font-size: 1.8em;
+  height: 2em;
+  width: 2em;
+  background-color: white;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border: none;
+  border-radius: 50px;
+  color: hsl(270, 42%, 70%);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.wrapper-reviews button:hover {
+  border: 2px solid hsl(270, 42%, 70%);
+  box-shadow: 0 0 1.2em rgba(0, 0, 0, 0.8);
+}
+
+.wrapper-reviews button:focus {
+  border: 3px solid hsl(270, 42%, 70%);
+  box-shadow: 0 0 1.4em rgba(0, 0, 0, 0.8);
+}
+
+button#next {
+  right: -1.1em;
+}
+
+button#prev {
+  left: -1.1em;
+}
+
+.testimonial-container p {
+  color: white;
+  font-size: 0.8em;
+  line-height: 1.5em;
+  letter-spacing: 0.05em;
+}
+
+.testimonial-container img {
+  display: block;
+  margin: 1.8em auto 1.25em auto;
+  border-radius: 50%;
+  height: 8em;
+  width: 7em;
+}
+
+.testimonial-container h3 {
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.testimonial-container h5 {
+  color: white;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 800;
+}
