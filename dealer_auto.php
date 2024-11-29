@@ -28,6 +28,14 @@ if (isset($_SESSION['admin_name'])){
     <title>Log in Form</title>
 </head>
 
+<header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="homepage.php">Homepage</a></li>
+            </ul>
+        </nav>
+</header>
+
 <body>
     <form action="login.php" method="post">
     

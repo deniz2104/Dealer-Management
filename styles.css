@@ -177,9 +177,16 @@ header {
   z-index: 1000;
 }
 
+header .navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+}
+
 header .navbar ul li {
   position: relative;
-  float: left;
 }
 
 header .navbar ul li a {
@@ -187,7 +194,8 @@ header .navbar ul li a {
   color: hsl(270, 42%, 70%);
   background-color: white;
   border-radius: 40px;
-  padding: 8px;
+  padding: 10px 15px;
+  text-align: center;
   display: block;
   font-weight: 700;
 }
@@ -203,16 +211,34 @@ header .navbar ul li a:focus {
 
 header .navbar ul li ul {
   position: absolute;
-  left: 0;
-  width: 100px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: transparent;
-  padding: 0px;
+  border-radius: 10px;
+  padding: 5px 0;
   display: none;
+  z-index: 1000;
 }
 
 header .navbar ul li:focus-within > ul,
 header .navbar ul li:hover > ul {
   display: initial;
+}
+
+header .navbar ul li ul li {
+  padding: 0;
+}
+
+header .navbar ul li ul li a {
+  font-size: 1.2em;
+  color: hsl(270, 42%, 70%);
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px;
+  display: block;
+  text-align: center;
+  width: 6.2em;
 }
 
 .container {
