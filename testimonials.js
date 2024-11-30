@@ -4,14 +4,7 @@ const testimonials = [
     job: "Thief",
     image: "CiolacuIonMarcel.jfif",
     testimonial:
-      "Bought brand new Mercedes AMG G63 after stealing from the old.Perfect condition nappa leather with gold insertions on the cockpit.All my coleagues now want to buy from 'Da cazanu si ti dau altul'",
-  },
-  {
-    name: "Eric",
-    job: "Pimp",
-    image: "eric-berinde-ispita.jpg",
-    testimonial:
-      "Stolen my favorite car from the dealership and now I'm rich.Rolls Royce Phtanom 2022 to be exactly.",
+      "Bought brand new Mercedes AMG G63 after stealing from the old.Perfect condition nappa leather with gold insertions on the cockpit.All my coleagues now want to buy from 'Da cazanu si ti dau altu'",
   },
   {
     name: "Niku",

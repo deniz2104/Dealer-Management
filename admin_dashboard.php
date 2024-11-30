@@ -29,18 +29,18 @@ if(!$result){
 <header>
         <nav class="navbar">
             <ul>
-                <li> <a href="table_of_cars.php">Cars list</a></li>
-                <li> <a href="table_of_dealers.php">Dealers list</a></li>
+                <li> <a href="table_of_cars.php"><span></span>Cars list</a></li>
+                <li> <a href="table_of_dealers.php"><span></span>Dealers list</a></li>
                 <li> <a href="#">Register +</a>
                     <ul>
-                        <li><a href="car_register_form.php">Register a car</a></li>
-                        <li><a href="register_form.php">Register a dealer</a></li>
+                        <li><a href="car_register_form.php"><span></span>car</a></li>
+                        <li><a href="register_form.php"><span></span>dealer</a></li>
                     </ul>
                 </li>
                 <li> <a href="#">Delete +</a>
                     <ul>
-                        <li><a href="delete_car_form.php">Delete a car</a></li>
-                        <li><a href="delete_dealer_form.php">Delete a dealer</a></li>
+                        <li><a href="delete_car_form.php"><span></span>car</a></li>
+                        <li><a href="delete_dealer_form.php"><span></span>dealer</a></li>
                     </ul>
                 </li>
 
