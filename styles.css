@@ -71,11 +71,7 @@ input:focus::placeholder {
 label {
   font-size: 20px;
   padding: 15px;
-  background-image: linear-gradient(
-    to right,
-    hsl(300, 100%, 50%),
-    hsl(0, 0%, 55%)
-  );
+  background-image: linear-gradient(to left, hsl(300, 100%, 50%), white);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -84,12 +80,15 @@ label {
 p {
   margin-top: 10px;
   margin-bottom: 0;
-  color: hsl(300, 100%, 50%);
+  background-image: linear-gradient(to left, hsl(300, 100%, 50%), white);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
   padding-left: 15px;
 }
 
 a {
-  color: hsl(25, 100%, 90%);
+  color: hsl(270, 42%, 70%);
   text-decoration: none;
   padding-left: 5px;
 }
@@ -123,37 +122,14 @@ select:focus {
   box-shadow: 0 0 5px hsl(270, 42%, 70%);
 }
 
-ul {
-  background: transparent;
-  padding-left: 15px;
-  margin: 0;
-}
-
-ul li {
-  display: inline-block;
-  position: relative;
-  color: hsl(270, 42%, 70%);
-  border-radius: 40px;
-  font-weight: 800;
-  margin: 5px;
-}
-
-ul li:hover {
-  background: white;
-}
-
-ul li:active {
-  background: hsl(270, 42%, 70%);
-}
-
 button {
   cursor: pointer;
   display: block;
   margin: auto;
   font-size: 25px;
-  padding: auto;
-  border-radius: auto;
-  border: none;
+  padding: 5px 15px;
+  border-radius: 40px;
+  border: 3px solid hsl(270, 42%, 70%);
   background-image: linear-gradient(to left, hsl(270, 42%, 70%), white);
   color: transparent;
   background-clip: text;
@@ -162,7 +138,7 @@ button {
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px hsl(300, 100%, 50%);
+  box-shadow: 0 0 0 4px white;
 }
 
 header {
@@ -192,21 +168,41 @@ header .navbar ul li {
 header .navbar ul li a {
   font-size: 18px;
   color: hsl(270, 42%, 70%);
-  background-color: white;
+  border: 3px solid hsl(270, 42%, 70%);
+  background-color: transparent;
   border-radius: 40px;
   padding: 10px 15px;
   text-align: center;
+  overflow: hidden;
   display: block;
   font-weight: 700;
 }
 
+header .navbar ul li span {
+  background: hsl(270, 42%, 70%);
+  height: 100%;
+  width: 0;
+  border-radius: 40px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
 header .navbar ul li a:hover {
-  box-shadow: 0 0 0 3px hsl(270, 42%, 70%);
+  border: none;
+  position: relative;
+  color: white;
+}
+
+header .navbar ul li a:hover span {
+  width: 100%;
 }
 
 header .navbar ul li a:focus {
   outline: none;
-  box-shadow: 0 0 0 5px hsl(300, 100%, 50%);
+  box-shadow: 0 0 0 4px white;
 }
 
 header .navbar ul li ul {
@@ -233,12 +229,36 @@ header .navbar ul li ul li {
 header .navbar ul li ul li a {
   font-size: 1.2em;
   color: hsl(270, 42%, 70%);
-  background-color: white;
+  background-color: transparent;
+  border: 3px solid hsl(270, 42%, 70%);
+  overflow: hidden;
   border-radius: 30px;
   padding: 5px;
   display: block;
   text-align: center;
   width: 6.2em;
+}
+
+header .navbar ul li ul li span {
+  background: hsl(270, 42%, 70%);
+  height: 100%;
+  width: 0;
+  border-radius: 40px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+header.navbar ul li ul li a:hover {
+  border: none;
+  position: relative;
+  color: white;
+}
+
+header.navbar ul li ul li a:hover span {
+  width: 100%;
 }
 
 .container {
@@ -323,7 +343,7 @@ header .navbar ul li ul li a {
 
 .container .content .btn:focus {
   outline: none;
-  box-shadow: 0 0 0 5px hsl(300, 100%, 50%);
+  box-shadow: 0 0 0 4px white;
 }
 
 .table-container {

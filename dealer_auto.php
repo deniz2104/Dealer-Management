@@ -31,7 +31,7 @@ if (isset($_SESSION['admin_name'])){
 <header>
         <nav class="navbar">
             <ul>
-                <li> <a href="homepage.php">Homepage</a></li>
+                <li> <a href="homepage.php"><span></span>Homepage</a></li>
             </ul>
         </nav>
 </header>
