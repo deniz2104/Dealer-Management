@@ -13,7 +13,6 @@ body {
   background-position: center;
   min-height: 100vh;
   overflow-y: auto;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -565,4 +564,93 @@ form {
   cursor: pointer;
   padding: 10px;
   font-size: 18px;
+}
+
+.loader-wrapper {
+  display: flex;
+  column-gap: 20px;
+  position: absolute;
+  transform: translateX(-5%);
+}
+
+.loader-wrapper .dot {
+  height: 80px;
+  width: 80px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  animation: animate 1s ease-in-out infinite alternate;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.25s;
+}
+
+.dot:nth-child(2) {
+  background: hsl(270, 42%, 70%);
+  animation-delay: -0.5s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: -0.75s;
+}
+
+.dot:nth-child(4) {
+  background: hsl(270, 42%, 70%);
+  animation-delay: -1s;
+}
+
+.loader-wrapper h2 {
+  margin: 10px 20px;
+}
+
+.message {
+  position: absolute;
+  top: 25%;
+}
+
+.message h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to right, hsl(270, 42%, 70%), white);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+.hidden-homepage {
+  display: none;
+  visibility: hidden;
+  transition: opacity 1.5s ease, visibility 0s 1.5s;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(50x);
+  }
+}
+
+.visible {
+  animation: fadeIn 1.5s ease forwards;
 }

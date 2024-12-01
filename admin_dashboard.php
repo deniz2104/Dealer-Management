@@ -26,8 +26,10 @@ if(!$result){
 </head>
 <body>
 
+<div class="loader"></div>
+
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
                 <li> <a href="table_of_cars.php"><span></span>Cars list</a></li>
                 <li> <a href="table_of_dealers.php"><span></span>Dealers list</a></li>
@@ -48,7 +50,7 @@ if(!$result){
         </nav>
 </header>
 
-<div class="container">
+<div class="hidden-homepage container">
 
 <div class="content">
    <h3>Hi, <span>admin</span></h3>
@@ -59,5 +61,17 @@ if(!$result){
 </div>
 
 </div>
+<script>
+    $(document).ready(function () {
+            setTimeout(function () {
+                    setTimeout(function () {
+                        $('.loader').fadeOut(1500, function () {
+                            $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                            $('.container').removeClass('hidden-homepage').addClass('visible');
+                        });
+                    }, 1500);
+                });
+            }, 1);
+</script>
 </body>
 </html>

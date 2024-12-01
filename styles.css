@@ -346,32 +346,132 @@ header.navbar ul li ul li a:hover span {
   box-shadow: 0 0 0 4px white;
 }
 
-.table-container {
+.loader-wrapper {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  margin-top: 10px;
+  column-gap: 20px;
+  position: absolute;
+  transform: translateX(-5%);
 }
 
-table {
+.loader-wrapper .dot {
+  height: 80px;
+  width: 80px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  animation: animate 1s ease-in-out infinite alternate;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.25s;
+}
+
+.dot:nth-child(2) {
+  background: hsl(270, 42%, 70%);
+  animation-delay: -0.5s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: -0.75s;
+}
+
+.dot:nth-child(4) {
+  background: hsl(270, 42%, 70%);
+  animation-delay: -1s;
+}
+
+.loader-wrapper h2 {
+  margin: 10px 20px;
+}
+
+.message {
+  position: absolute;
+  top: 25%;
+}
+
+.message h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to right, hsl(270, 42%, 70%), white);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+.hidden-homepage {
+  display: none;
+  visibility: hidden;
+  transition: opacity 1.5s ease, visibility 0s 1.5s;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(50x);
+  }
+}
+
+.visible {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.loader {
   width: fit-content;
-  border-collapse: collapse;
-  border: none;
-  float: left;
-}
-th,
-td {
-  padding: 8px;
-  text-align: left;
-  border-radius: 40px;
-  border: none;
-}
-th {
-  color: white;
-  background-color: hsl(270, 42%, 70%);
-  font-weight: 800;
+  font-size: 80px;
+  font-family: monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px hsl(270, 42%, 70%);
+  --g: conic-gradient(white 0 0) no-repeat text;
+  background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch,
+    var(--g) 5ch, var(--g) 6ch, var(--g) 7ch, var(--g) 8ch, var(--g) 9ch,
+    var(--g) 10ch, var(--g) 11ch, var(--g) 12ch, var(--g) 13ch;
+  background-position-y: 100%;
+  background-size: 1ch 0;
+  animation: loader-animation 1.5s linear infinite alternate;
 }
 
-tr {
-  color: white;
+.loader:before {
+  content: "Welcome Admin";
+}
+@keyframes loader-animation {
+  0% {
+    background-size: 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0;
+  }
+  25% {
+    background-size: 1ch 100%, 1ch 50%, 1ch 0, 1ch 0, 1ch 0, 1ch 50%, 1ch 100%;
+  }
+  50% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 50%, 1ch 0, 1ch 50%, 1ch 100%,
+      1ch 100%;
+  }
+  75% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 50%, 1ch 100%, 1ch 100%,
+      1ch 100%;
+  }
+  to {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%,
+      1ch 100%;
+  }
 }
