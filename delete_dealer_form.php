@@ -1,6 +1,4 @@
 <?php
-//TODO: sa nu ma pot sterge pe mine
-//TODO: sa nu ma pot vizualiza pe mine
 @include 'config.php';
 session_start();
 
@@ -8,12 +6,6 @@ if(!isset($_SESSION['admin_name'])){
     header('location:dealer_auto.php');
     exit();  
  }
- 
-$query="SELECT ID_VANZATOR,NUME,PRENUME FROM vanzatori";
-$result = $conexiune->query($query);
-if(!$result){
-   die("Error: ".mysqli_error($conexiune));
-}
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,4 @@
 <?php
-//TODO: Loader
-//TODO: Sa nu afiseze numele cu care se conecteaza 
 @include 'config.php';
 session_start();
 
@@ -8,12 +6,8 @@ if(!isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
-
-$query="SELECT NUME,PRENUME,EMAIL FROM vanzatori";
-$result = $conexiune->query($query);
-if(!$result){
-   die("Error: ".mysqli_error($conexiune));
-}
+//TODO: Modficat coloane la date ca nu se vede nimic
+//TODO: adaugat date in tabela servicii
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +16,7 @@ if(!$result){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Admin Page</title>
 </head>
 <body>

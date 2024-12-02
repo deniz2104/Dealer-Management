@@ -8,8 +8,13 @@ if(!isset($_SESSION['admin_name'])){
    exit();  
 }
 
-$query="SELECT NUME,PRENUME,EMAIL FROM vanzatori";
-$result = $conexiune->query($query);
+list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
+$query = "SELECT NUME, PRENUME, EMAIL FROM vanzatori WHERE NUME != ? AND PRENUME != ?";
+$stmt = $conexiune->prepare($query);
+$stmt->bind_param("ss", $admin_nume, $admin_prenume);
+$stmt->execute();
+
+$result = $stmt->get_result();
 if(!$result){
    die("Error: ".mysqli_error($conexiune));
 }
@@ -53,5 +58,6 @@ if(!$result){
         </tbody>
     </table>
    </div>
+   <script>console.log($admin_name,$admin_prenume);</script>
 </body>
 </html>

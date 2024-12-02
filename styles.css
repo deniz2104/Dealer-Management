@@ -22,13 +22,60 @@ body {
 form {
   margin-top: -8px;
   width: 450px;
-  border: 2px solid #ccc;
   border-style: inset;
   padding: 9px;
-  background: transparent;
+  background: black;
   border-radius: 15px;
   backdrop-filter: blur;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.style-form {
+  position: relative;
+  border-radius: 15px;
+  padding: 4px;
+}
+
+.style-form::before,
+.style-form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    45deg,
+    #ff595e,
+    #6a4c93,
+    white,
+    white,
+    #6a4c93,
+    #ff6700
+  );
+  background-size: 400%;
+  z-index: -1;
+  animation: glow 20s linear infinite;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.style-form::after {
+  filter: blur(25px);
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes glow {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 h1 {
