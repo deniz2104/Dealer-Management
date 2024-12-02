@@ -1,17 +1,10 @@
 <?php
-//TODO: Loader
-//TODO: Sa nu afiseze numele cu care se conecteaza 
 @include 'config.php';
 session_start();
 
 if(!isset($_SESSION['seller_name'])){
    header('location:dealer_auto.php');
    exit();  
-}
-$query="SELECT NUME,PRENUME,EMAIL FROM vanzatori";
-$result = $conexiune->query($query);
-if(!$result){
-   die("Error: ".mysqli_error($conexiune));
 }
 ?>
 

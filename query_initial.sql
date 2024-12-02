@@ -128,3 +128,18 @@ ALTER TABLE vanzatori DROP VECHIME;
 UPDATE vanzatori SET Email='florescu.bogdan@yahoo.com' WHERE NUME='Florescu' AND PRENUME='Bogdan';
 
 SELECT * FROM vanzatori;
+
+ALTER TABLE tranzactii
+DROP FOREIGN KEY tranzactii_ibfk_1;
+ALTER TABLE tranzactii
+ADD CONSTRAINT tranzactii_ibfk_1 foreign key(ID_CLIENT) REFERENCES clienti(ID_CLIENT) ON DELETE RESTRICT;
+
+ALTER TABLE tranzactii
+DROP FOREIGN KEY tranzactii_ibfk_2;
+ALTER TABLE tranzactii
+ADD CONSTRAINT tranzactii_ibfk_2 foreign key(ID_MASINA) REFERENCES masini(ID_MASINA) ON DELETE RESTRICT;
+
+ALTER TABLE tranzactii
+DROP FOREIGN KEY tranzactii_ibfk_3;
+ALTER TABLE tranzactii
+ADD CONSTRAINT tranzactii_ibfk_3 foreign key(ID_VANZATOR) REFERENCES vanzatori(ID_VANZATOR) ON DELETE RESTRICT;
