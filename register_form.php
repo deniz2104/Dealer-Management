@@ -37,7 +37,7 @@ $is_seller = isset($_SESSION['seller_name']);
 </header>
 
 <body>
-    <form action="register.php" method="post">
+    <form action="register.php" method="post" class="style-form">
         <h1>Register</h1>
         <label for="nume">Nume:</label>
         <input type="text" name="nume" id="nume" required placeholder="Introduceti numele" autocomplete="off">

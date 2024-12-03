@@ -31,11 +31,11 @@ if(!$result){
         <nav class="navbar">
             <ul>
             <?php if ($is_admin): ?>
-        <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+        <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
     <?php elseif ($is_seller): ?>
-        <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
+        <li><a href="seller_dashboard.php" class="btn"><span></span>Seller Dashboard</a></li>
     <?php endif; ?>
-    <li><a href="table_of_cars.php">Cars list</a></li>
+    <li><a href="table_of_cars.php"><span></span>Cars list</a></li>
             </ul>
         </nav>
 </header>
@@ -43,7 +43,7 @@ if(!$result){
 <body>
 <div class="container">
     <div class="content">
-    <form action="delete.php" method="post">
+    <form action="delete.php" method="post" class="style-form">
         <h3>Delete <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>

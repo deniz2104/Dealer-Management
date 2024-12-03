@@ -22,8 +22,8 @@ if(!isset($_SESSION['admin_name'])){
 <header>
         <nav class="navbar">
             <ul>
-            <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
-            <li><a href="table_of_dealers.php">Dealers list</a></li>
+            <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
+            <li><a href="table_of_dealers.php"><span></span>Dealers list</a></li>
             </ul>
         </nav>
 </header>
@@ -31,7 +31,7 @@ if(!isset($_SESSION['admin_name'])){
 <body>
 <div class="container">
     <div class="content">
-    <form action="delete_dealer.php" method="post">
+    <form action="delete_dealer.php" method="post" class="style-form">
         <h3>Delete <span>dealer</span></h3>
 
         <label for="nume">Nume:</label>

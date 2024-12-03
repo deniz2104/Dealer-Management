@@ -33,7 +33,7 @@ $is_seller = isset($_SESSION['seller_name']);
 </header>
 
 <body>
-    <form action="car_register.php" method="post">
+    <form action="car_register.php" method="post" class="style-form">
         <h1>Register</h1>
         <label for="marca">Marca:</label>
         <input type="text" name="marca" an="marca" required placeholder="Introduceti marca" autocomplete="off">
