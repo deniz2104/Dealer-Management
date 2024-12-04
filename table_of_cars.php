@@ -1,7 +1,7 @@
 <?php
 @include 'config.php';
 session_start();
-
+//TODO: sa am o chestie de genul 5 itemi per pagina si sa pot da pagina spre exemplu
 if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  

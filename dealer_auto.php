@@ -13,11 +13,9 @@ if (isset($_SESSION['admin_name'])){
 
 <!DOCTYPE html>
 <html lang="en">
-<!TODO: Loader pentru o prima pagina>
 <!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat >
 <!TODO: sa am real time fetching cand dau refresh>
 <!TODO: animatii pentru fiecare pagina>
-<!TODO: Loader diferit fata de cel din navigarea dintre pagini la dealeri>
 <!TODO: Sa am o pagina modala pentru afisarea masinilor>
 
 <head>

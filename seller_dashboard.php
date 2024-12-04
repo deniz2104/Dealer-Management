@@ -48,12 +48,19 @@ if(!isset($_SESSION['seller_name'])){
                 </span></h1>
             <a href="dealer_auto.php" class="btn">Login</a>
             <a href="upgrade_role_form.php" class="btn">Upgrade to admin role</a>
+            <a href="homepage.php" class="btn">Homepage</a>
             <a href="logout.php" class="btn">Logout</a>
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            setTimeout(function () {
+    $(document).ready(function () {
+        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+
+        contor++;
+        sessionStorage.setItem('contor', contor);
+
+        if (contor === 1) {
+            $('.loader').fadeIn(1500, function () {
                 setTimeout(function () {
                     $('.loader').fadeOut(1500, function () {
                         $('.navbar').removeClass('hidden-homepage').addClass('visible');
@@ -61,8 +68,17 @@ if(!isset($_SESSION['seller_name'])){
                     });
                 }, 1500);
             });
-        }, 1);
-    </script>
+        } else {
+            $('.loader').addClass('hidden-homepage');
+            $('.navbar').removeClass('hidden-homepage').addClass('visible');
+            $('.container').removeClass('hidden-homepage').addClass('visible');
+        }
+
+        document.getElementById('logout').addEventListener("click", function () {
+            sessionStorage.clear();
+        });
+    });
+</script>
 </body>
 
 </html>

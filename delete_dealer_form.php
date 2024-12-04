@@ -6,6 +6,8 @@ if(!isset($_SESSION['admin_name'])){
     header('location:dealer_auto.php');
     exit();  
  }
+//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
+//TODO: un ajax pentru autcomplete la nume prenume si id
 ?>
 
 <!DOCTYPE html>

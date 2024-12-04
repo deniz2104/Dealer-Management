@@ -8,6 +8,8 @@ if(!isset($_SESSION['admin_name'])){
 }
 //TODO: Modficat coloane la date ca nu se vede nimic
 //TODO: adaugat date in tabela servicii
+//TODO: nu pot da pe login pana cand nu dau logout
+//TODO: la fiecare tranzitie cand vine sa am grija sa nu mai am overflow
 ?>
 
 <!DOCTYPE html>
@@ -52,21 +54,38 @@ if(!isset($_SESSION['admin_name'])){
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['admin_name']); ?></span></h1>   
    <a href="dealer_auto.php" class="btn">Login</a>
    <a href="edit_car_form.php" class="btn">Edit a car</a>
-   <a href="logout.php" class="btn">Logout</a>
+   <a href="homepage.php" class="btn">Homepage</a>
+   <a href="logout.php" class="btn" id="logout">Logout</a>
 </div>
 
 </div>
 <script>
     $(document).ready(function () {
-            setTimeout(function () {
-                    setTimeout(function () {
-                        $('.loader').fadeOut(1500, function () {
-                            $('.navbar').removeClass('hidden-homepage').addClass('visible');
-                            $('.container').removeClass('hidden-homepage').addClass('visible');
-                        });
-                    }, 1500);
-                });
-            }, 1);
+        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+
+        contor++;
+        sessionStorage.setItem('contor', contor);
+
+        if (contor === 1) {
+            $('.loader').fadeIn(1500, function () {
+                setTimeout(function () {
+                    $('.loader').fadeOut(1500, function () {
+                        $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                        $('.container').removeClass('hidden-homepage').addClass('visible');
+                    });
+                }, 1500);
+            });
+        } else {
+            $('.loader').addClass('hidden-homepage');
+            $('.navbar').removeClass('hidden-homepage').addClass('visible');
+            $('.container').removeClass('hidden-homepage').addClass('visible');
+        }
+
+        document.getElementById('logout').addEventListener("click", function () {
+            sessionStorage.clear();
+        });
+    });
 </script>
+
 </body>
 </html>

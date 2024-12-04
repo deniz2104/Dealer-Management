@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="hidden-homepage loader-wrapper">
         <span class="dot"></span>
         <span class="dot"></span>
@@ -50,32 +49,33 @@
     </div>
 
     <script>
-        let cont = 0;
-        $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
-        $('#message').removeClass('hidden-homepage').addClass('visible');
-        window.onload = () => {
-            sessionStorage.setItem('animationPlayed', 'false');
-            setTimeout(function () {
+    $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
+    $('#message').removeClass('hidden-homepage').addClass('visible');
+    $(document).ready(function () {
+        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+
+        contor++;
+        sessionStorage.setItem('contor', contor);
+
+        if (contor === 1) {
+     		setTimeout(function () {
                 $('#message').fadeOut(2500, function () {
                     setTimeout(function () {
                         $('.loader-wrapper').fadeOut(1500, function () {
                             $('.navbar').removeClass('hidden-homepage').addClass('visible');
                             $('.content').removeClass('hidden-homepage').addClass('visible');
-                            sessionStorage.setItem('animationPlayed', 'true');
-                            sessionStorage.setItem('contor', (parseInt(sessionStorage.getItem('contor')) || 0) + 1);
                         });
                     }, 1500);
                 });
             }, 1);
-            window.onbeforeunload = function () {
-                sessionStorage.clear();
-            };
-            if (sessionStorage.getItem('contor') >= 1 && sessionStorage.getItem('animationPlayed') === 'false') {
-                $('.loader-wrapper').addClass('hidden-homepage');
-                $('#message').addClass('hidden-homepage');
-            }
-        };
-    </script>
+        } else {
+            $('.loader-wrapper').addClass('hidden-homepage');
+            $('#message').addClass('hidden-homepage');
+            $('.navbar').removeClass('hidden-homepage').addClass('visible');
+            $('.content').removeClass('hidden-homepage').addClass('visible');
+        }
+    });
+</script>
 </body>
 
 </html>
