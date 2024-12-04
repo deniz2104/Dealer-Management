@@ -8,6 +8,7 @@ if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
 }
 $is_admin = isset($_SESSION['admin_name']);
 $is_seller = isset($_SESSION['seller_name']);
+//TODO: Un ajax in care sa sugerez id ul
 ?>
 
 <!DOCTYPE html>
@@ -24,16 +25,16 @@ $is_seller = isset($_SESSION['seller_name']);
         <nav class="navbar">
             <ul>
             <?php if ($is_admin): ?>
-        <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+        <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
     <?php elseif ($is_seller): ?>
-        <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
+        <li><a href="seller_dashboard.php" class="btn"><span></span>Seller Dashboard</a></li>
     <?php endif; ?>
             </ul>
         </nav>
 </header>
 
 <body>
-    <form action="car_register.php" method="post">
+    <form action="car_register.php" method="post" class="style-form">
         <h1>Register</h1>
         <label for="marca">Marca:</label>
         <input type="text" name="marca" an="marca" required placeholder="Introduceti marca" autocomplete="off">
