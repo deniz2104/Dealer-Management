@@ -2,13 +2,8 @@
 session_start();
 @include 'config.php'; 
 
-$marca = $_POST['marca'];
-$model = $_POST['model'];
-$capacitate=$_POST['capacitate_cilindrica'];
-$an = $_POST['an'];
 $id_masina=$_POST['id_masina'];
 $pret = $_POST['pret'];
-
 
 $update = $conexiune->prepare("SELECT * FROM masini WHERE  ID_MASINA=?");
 $update->bind_param("i",$id_masina);
@@ -23,13 +18,13 @@ $result = $update->get_result();
         exit();
     }
     else{
-        $edit=$conexiune->prepare("UPDATE FROM masini WHERE MARCA=? MODEL=? CAPACITATE_CILINDRICA=? AN=? PRET=?");
-        $edit->bind_param("ssiid",$marca,$model,$capacitate,$an,$pret);
+        $edit=$conexiune->prepare("UPDATE masini SET PRET=? WHERE ID_MASINA=?");
+        $edit->bind_param("di",$pret,$id_masina);
         if($edit->execute()){
-            echo "<script>alert('Update successful'); window.location.href='edit_update_form.php';</script>";
+            echo "<script>alert('Update successful'); window.location.href='edit_car_form.php';</script>";
         }
         else {
-            echo "<script>alert('Error: Failed to update. Please try again.'); window.location.href='edit_update_form.php';</script>";
+            echo "<script>alert('Error: Failed to update. Please try again.'); window.location.href='edit_car_form.php';</script>";
         }
         $edit->close(); 
 }

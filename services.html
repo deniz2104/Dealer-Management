@@ -7,22 +7,25 @@
     <title>Services</title>
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <img src="logo.jpg" class="logo">
-            <ul>
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="services-container">
+    <div class="hidden-homepage navbar">
+        <header class="header">
+            <nav class="navbar">
+                <img src="logo.jpg" class="logo">
+                <ul>
+                    <li><a href="homepage.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="hidden-homepage services-container">
         <div id="services-section">
             <h2>Services</h2>
             <p>Our services include automotive maintenance, car repairs, car parts, and exceptional detailing. We offer
@@ -67,6 +70,16 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.services-container').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

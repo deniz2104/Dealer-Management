@@ -45,6 +45,7 @@ if(!isset($_SESSION['admin_name'])){
 
         <label for="id">ID:</label>
         <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
+        <br>
         <button type="submit" class="btn">Delete dealer</button>
         <h3>Want to register a dealer?<a href="register.php"><span>Register dealer</span></a></h3>
     </form>

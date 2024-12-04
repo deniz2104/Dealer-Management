@@ -45,7 +45,7 @@ $is_seller = isset($_SESSION['seller_name']);
         
 
         <label for="capacitate cilindrica">Capacitate cilindrica:</label>
-        <input type="capacitate cilindrica" name="capacitate cilindrica" an="capacitate cilindrica" required placeholder="1999 cm3" autocomplete="off">
+        <input type="number" name="capacitate cilindrica" an="capacitate cilindrica" required placeholder="1999 cm3" autocomplete="off">
         
 
 
@@ -54,7 +54,7 @@ $is_seller = isset($_SESSION['seller_name']);
         
 
         <label for="pret">Pret:</label>
-        <input type="text" name="pret" an="pret" required placeholder="75000$" autocomplete="off">
+        <input type="number" name="pret" an="pret" required placeholder="75000$" autocomplete="off">
 
         <label>ID_Masina:</label>
         <input type="text" name="id_masina" an="id_masina" required placeholder="xx" autocomplete="off">

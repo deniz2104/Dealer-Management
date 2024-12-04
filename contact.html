@@ -7,28 +7,32 @@
     <title>Contact</title>
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <img src="logo.jpg" class="logo">
-            <ul>
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="hidden-homepage navbar">
+        <header class="header">
+            <nav class="navbar">
+                <img src="logo.jpg" class="logo">
+                <ul>
+                    <li><a href="homepage.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
 
     <section class="contact">
-        <div class="contact-content">
+        <div class="hidden-homepage contact-content">
             <h2>Contact Us</h2>
             <p>Here to help you!</p>
         </div>
-        <div class="container-contact">
+        <div class="hidden-homepage container-contact">
             <div class="contactInfo">
                 <div class="box">
                     <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -52,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
+            <div class="hidden-homepage contact-form">
                 <form>
                     <h2>Leave a Message</h2>
                     <div class="inputBox">
@@ -74,6 +78,18 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.contact-content').removeClass('hidden-homepage').addClass('visible');
+                    $('.container-contact').removeClass('hidden-homepage').addClass('visible');
+                    $('.contact-form').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

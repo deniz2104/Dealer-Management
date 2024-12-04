@@ -6,8 +6,6 @@ if(!isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
-//TODO: Modficat coloane la date ca nu se vede nimic
-//TODO: adaugat date in tabela servicii
 //TODO: nu pot da pe login pana cand nu dau logout
 //TODO: la fiecare tranzitie cand vine sa am grija sa nu mai am overflow
 ?>
@@ -54,6 +52,7 @@ if(!isset($_SESSION['admin_name'])){
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['admin_name']); ?></span></h1>   
    <a href="dealer_auto.php" class="btn">Login</a>
    <a href="edit_car_form.php" class="btn">Edit a car</a>
+   <a href="edit_services_form.php" class="btn">Edit Services</a>
    <a href="homepage.php" class="btn">Homepage</a>
    <a href="logout.php" class="btn" id="logout">Logout</a>
 </div>

@@ -10,11 +10,6 @@ if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
 }
 $is_admin = isset($_SESSION['admin_name']);
 $is_seller = isset($_SESSION['seller_name']);
-$query="SELECT ID_MASINA,MARCA,MODEL FROM masini";
-$result = $conexiune->query($query);
-if(!$result){
-   die("Error: ".mysqli_error($conexiune));
-}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +43,7 @@ if(!$result){
 
         <h3>ID <span>Masina:</span></h3>
         <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
+        <br>
         <button type="submit" class="btn">Delete car</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
