@@ -17,12 +17,13 @@ if(!isset($_SESSION['admin_name'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Delete Dealer</title>
 </head>
 
 
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
             <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
             <li><a href="table_of_dealers.php"><span></span>Dealers list</a></li>
@@ -31,7 +32,7 @@ if(!isset($_SESSION['admin_name'])){
 </header>
 
 <body>
-<div class="container">
+<div class="hidden-homepage container">
     <div class="content">
     <form action="delete_dealer.php" method="post" class="style-form">
         <h3>Delete <span>dealer</span></h3>
@@ -51,6 +52,16 @@ if(!isset($_SESSION['admin_name'])){
     </form>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.container').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

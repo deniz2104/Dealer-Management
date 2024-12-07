@@ -19,11 +19,12 @@ $is_seller = isset($_SESSION['seller_name']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Register</title>
 </head>
 
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
             <?php if ($is_admin): ?>
         <li><a href="admin_dashboard.php"><span></span>Back to Dashboard</a></li>
@@ -35,6 +36,7 @@ $is_seller = isset($_SESSION['seller_name']);
 </header>
 
 <body>
+    <div class="hidden-homepage register-form">
     <form action="register.php" method="post" class="style-form">
         <h1>Register</h1>
         <label for="nume">Nume:</label>
@@ -64,6 +66,17 @@ $is_seller = isset($_SESSION['seller_name']);
         <button type="submit" class="btn">Register</button>
         <p>Already a member?<a href="dealer_auto.php">Log in</a></p>
     </form>
+    </div>
+    <script>
+$(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.register-form').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

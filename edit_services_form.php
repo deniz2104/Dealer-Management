@@ -1,6 +1,4 @@
 <?php
-//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
-//TODO: un ajax pentru autcomplete la id
 @include 'config.php';
 session_start();
 
@@ -18,11 +16,12 @@ $is_admin = isset($_SESSION['admin_name']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Edit Services</title>
 </head>
 
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
         <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
         <li><a href="services_info.php"><span></span>Services info</a></li>
@@ -31,7 +30,7 @@ $is_admin = isset($_SESSION['admin_name']);
 </header>
 
 <body>
-<div class="container">
+<div class="hidden-homepage container">
     <div class="content">
     <form action="edit_services.php" method="post" class="style-form">
         <h3>Edit <span>services</span></h3>
@@ -48,6 +47,16 @@ $is_admin = isset($_SESSION['admin_name']);
     </form>
 </div>
 </div>
+<scipt>
+$(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.container').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

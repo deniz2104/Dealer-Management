@@ -4,19 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Dealer</title>
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
-    <title>About</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/browse/@barba/core@2.10.3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
 <body>
-    <div class="hidden-homepage navbar">
+    <div class="hidden-homepage loader-wrapper">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="hidden-homepage message" id="message">
+        <h2>Welcome to Auto Dealer</h2>
+    </div>
+    <div class="navbar" data-barba="wrapper">
         <header class="header">
             <nav class="navbar">
                 <img src="logo.jpg" class="logo">
                 <ul>
-                    <li><a href="homepage.php">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="reviews.html">Reviews</a></li>
@@ -24,39 +36,46 @@
             </nav>
         </header>
     </div>
-    <div class="hidden-homepage heading-about">
-        <h1>About Us</h1>
-        <p>We're happy to sold beauties to beautiful people!</p>
-        <div class="hidden-homepage container-about">
-            <section class="about">
-                <div class="about-image">
-                    <img src="poza_about.jpg" alt="About Us">
-                </div>
-                <div class="hidden-homepage about-content">
-                    <h2>Who We Are</h2>
-                    <p>Estabilished in 2023 in Romania, Bucharest, " Da cazanu si ti dau altu' "
-                        was made to deliver the
-                        story behind every car.<br><br>
-                        From low-budget options perfect for first-time buyers to luxurious models
-                        that turn heads on the road, we adress to every type of driver.<br><br>
-                        Our mission is to match you with the perfect vehicle that suits your needs and budget while
-                        ensuring
-                        transparency and trust in every transaction.</p>
-                </div>
-            </section>
+
+    <div class="content" data-barba="container" data-barba-namespace="home">
+        <h1>Auto Dealer</h1>
+        <p>Welcome to our auto dealership! We offer a wide range of cars, from luxury to budget.
+            <br>We're always here
+            to help you find the perfect car for your needs.
+        </p>
+        <div>
+            <a href="cars_list.php" class="btn"><span></span> Our cars</a>
+            <a href="login_client.php" class="btn"><span></span>Login as client</a>
+            <a href="dealer_auto.php" class="btn"><span></span>Login as dealer</a>
         </div>
     </div>
+
     <script>
+        $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
+        $('#message').removeClass('hidden-homepage').addClass('visible');
         $(document).ready(function () {
-            setTimeout(function () {
+            let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+
+            contor++;
+            sessionStorage.setItem('contor', contor);
+
+            if (contor === 1) {
                 setTimeout(function () {
-                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
-                    $('.heading-about').removeClass('hidden-homepage').addClass('visible');
-                    $('.container-about').removeClass('hidden-homepage').addClass('visible');
-                    $('.about-content').removeClass('hidden-homepage').addClass('visible');
-                });
-            }, 500);
-        }, 1);
+                    $('#message').fadeOut(2500, function () {
+                        setTimeout(function () {
+                            $('.loader-wrapper').fadeOut(1500, function () {
+
+                            });
+                        }, 1500);
+                    });
+                }, 1);
+            } else {
+                $('.loader-wrapper').addClass('hidden-homepage');
+                $('#message').addClass('hidden-homepage');
+                $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                $('.content').removeClass('hidden-homepage').addClass('visible');
+            }
+        });
     </script>
 </body>
 

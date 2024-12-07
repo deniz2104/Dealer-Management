@@ -7,6 +7,8 @@
     <title>Auto Dealer</title>
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/browse/@barba/core@2.10.3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
 <body>
@@ -52,12 +54,12 @@
     $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
     $('#message').removeClass('hidden-homepage').addClass('visible');
     $(document).ready(function () {
-        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+        let contor_home = parseInt(sessionStorage.getItem('contor_home')) || 0;
 
-        contor++;
-        sessionStorage.setItem('contor', contor);
+        contor_home++;
+        sessionStorage.setItem('contor_home', contor_home);
 
-        if (contor === 1) {
+        if (contor_home === 1) {
      		setTimeout(function () {
                 $('#message').fadeOut(2500, function () {
                     setTimeout(function () {
@@ -69,8 +71,8 @@
                 });
             }, 1);
         } else {
-            $('.loader-wrapper').addClass('hidden-homepage');
-            $('#message').addClass('hidden-homepage');
+            $('.loader-wrapper').hide();
+            $('#message').hide();
             $('.navbar').removeClass('hidden-homepage').addClass('visible');
             $('.content').removeClass('hidden-homepage').addClass('visible');
         }

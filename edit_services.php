@@ -4,9 +4,8 @@ session_start();
 
 $id_serviciu=$_POST['id_serviciu'];
 $id_masina=$_POST['id_masina'];
-$cost = $_POST['cost'];
-$data = date('Y-m-d', strtotime($_POST['data']));
-
+$cost = isset($_POST['cost']) && $_POST['cost'] !== "" ? $_POST['cost'] : null;
+$data = isset($_POST['data']) && $_POST['data'] !== "" ? date('Y-m-d', strtotime($_POST['data'])) : null;
 
 $update = $conexiune->prepare("SELECT * FROM servicii WHERE  ID_MASINA=?");
 $update->bind_param("i",$id_masina);
@@ -18,6 +17,33 @@ $update_1->bind_param("i",$id_serviciu);
 $update_1->execute();
 $result_1 = $update_1->get_result();
 
+
+$update_variables=[];
+$parameters=[];
+$types="";
+
+if(!is_null($cost)){
+    $update_variables[] = "COST=?";
+    $parameters[] = "$cost";
+    $types.="d";
+}    
+
+if(!is_null($data)){
+    $update_variables[] = "DATA_SERVICIULUI=?";
+    $parameters[] = "$data";
+    $types.="s";
+}    
+
+if(empty($update_variables)){
+    echo "<script>alert('Error: No fields to update'); window.location.href='edit_services_form.php';</script>";
+    $update->close();
+    $update->close();
+    $conexiune->close();
+    exit();
+}
+
+$parameters[]=$id_serviciu;
+$types.="i";
 
     if($result->num_rows==0){
         echo "<script>alert('Error:You can not update unexistent ID'); window.location.href='edit_services_form.php';</script>";
@@ -33,17 +59,20 @@ $result_1 = $update_1->get_result();
         exit();
     }
     else{
-        $edit=$conexiune->prepare("UPDATE servicii SET COST=?,DATA_SERVICIULUI=? WHERE ID_SERVICIU=?");
-        $edit->bind_param("dsi",$cost,$data,$id_serviciu);
-        if($edit->execute()){
+        $update_fields_string=implode(", ",$update_variables);
+        $query = "UPDATE servicii SET $update_fields_string WHERE ID_SERVICIU=?";
+        $update_2 = $conexiune->prepare($query);
+        $update_2->bind_param($types, ...$parameters);
+
+        if ($update_2->execute()) {
             echo "<script>alert('Update successful'); window.location.href='edit_services_form.php';</script>";
-        }
-        else {
+        } else {
             echo "<script>alert('Error: Failed to update. Please try again.'); window.location.href='edit_services_form.php';</script>";
         }
-        $edit->close(); 
+        $update_2->close(); 
 }
     
 $update->close();
+$update_1->close();  
 $conexiune->close();
 ?>

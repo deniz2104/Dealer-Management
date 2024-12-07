@@ -1,6 +1,4 @@
 <?php
-//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
-//TODO: un ajax pentru autcomplete la id
 @include 'config.php';
 session_start();
 
@@ -19,11 +17,12 @@ $is_seller = isset($_SESSION['seller_name']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Edit Cars</title>
 </head>
 
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
             <?php if ($is_admin): ?>
         <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
@@ -36,7 +35,7 @@ $is_seller = isset($_SESSION['seller_name']);
 </header>
 
 <body>
-<div class="container">
+<div class="hidden-homepage container">
     <div class="content">
     <form action="edit.php" method="post" class="style-form">
         <h3>Edit <span>car</span></h3>
@@ -52,6 +51,16 @@ $is_seller = isset($_SESSION['seller_name']);
     </form>
 </div>
 </div>
+<script>
+$(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.container').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

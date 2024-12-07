@@ -6,6 +6,8 @@ if(!isset($_SESSION['seller_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
+//TODO: cand dau logout sa nu mai am loader ul
+
 ?>
 
 <header>
@@ -46,20 +48,19 @@ if(!isset($_SESSION['seller_name'])){
             <h1>Welcome, <span>
                     <?php echo htmlspecialchars($_SESSION['seller_name']); ?>
                 </span></h1>
-            <a href="dealer_auto.php" class="btn">Login</a>
-            <a href="upgrade_role_form.php" class="btn">Upgrade to admin role</a>
             <a href="homepage.php" class="btn">Homepage</a>
+            <a href="upgrade_role_form.php" class="btn">Upgrade to admin role</a>
             <a href="logout.php" class="btn">Logout</a>
         </div>
     </div>
     <script>
     $(document).ready(function () {
-        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+        let contor_seller = parseInt(sessionStorage.getItem('contor_seller')) || 0;
 
-        contor++;
-        sessionStorage.setItem('contor', contor);
+        contor_seller++;
+        sessionStorage.setItem('contor_seller', contor_seller);
 
-        if (contor === 1) {
+        if (contor_seller === 1) {
             $('.loader').fadeIn(1500, function () {
                 setTimeout(function () {
                     $('.loader').fadeOut(1500, function () {
@@ -69,7 +70,7 @@ if(!isset($_SESSION['seller_name'])){
                 }, 1500);
             });
         } else {
-            $('.loader').addClass('hidden-homepage');
+            $('.loader').hide();
             $('.navbar').removeClass('hidden-homepage').addClass('visible');
             $('.container').removeClass('hidden-homepage').addClass('visible');
         }

@@ -6,8 +6,8 @@ if(!isset($_SESSION['admin_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
-//TODO: nu pot da pe login pana cand nu dau logout
 //TODO: la fiecare tranzitie cand vine sa am grija sa nu mai am overflow
+//TODO: cand dau logout sa nu mai am loader ul
 ?>
 
 <!DOCTYPE html>
@@ -28,16 +28,23 @@ if(!isset($_SESSION['admin_name'])){
             <ul>
                 <li> <a href="table_of_cars.php"><span></span>Cars list</a></li>
                 <li> <a href="table_of_dealers.php"><span></span>Dealers list</a></li>
-                <li> <a href="#">Register +</a>
+                <li> <a href="#"><span></span>Register +</a>
                     <ul>
                         <li><a href="car_register_form.php"><span></span>car</a></li>
                         <li><a href="register_form.php"><span></span>dealer</a></li>
                     </ul>
                 </li>
-                <li> <a href="#">Delete +</a>
+                <li> <a href="#"><span></span>Delete +</a>
                     <ul>
                         <li><a href="delete_car_form.php"><span></span>car</a></li>
                         <li><a href="delete_dealer_form.php"><span></span>dealer</a></li>
+                    </ul>
+                </li>
+
+                <li> <a href="#"><span></span>Edit +</a>
+                    <ul>
+                        <li><a href="edit_car_form.php"><span></span>car</a></li>
+                        <li><a href="edit_services_form.php"><span></span>services</a></li>
                     </ul>
                 </li>
 
@@ -50,9 +57,6 @@ if(!isset($_SESSION['admin_name'])){
 <div class="content">
    <h3>Hi, <span>admin</span></h3>
    <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['admin_name']); ?></span></h1>   
-   <a href="dealer_auto.php" class="btn">Login</a>
-   <a href="edit_car_form.php" class="btn">Edit a car</a>
-   <a href="edit_services_form.php" class="btn">Edit Services</a>
    <a href="homepage.php" class="btn">Homepage</a>
    <a href="logout.php" class="btn" id="logout">Logout</a>
 </div>
@@ -60,12 +64,12 @@ if(!isset($_SESSION['admin_name'])){
 </div>
 <script>
     $(document).ready(function () {
-        let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+        let contor_admin = parseInt(sessionStorage.getItem('contor_admin')) || 0;
 
-        contor++;
-        sessionStorage.setItem('contor', contor);
+        contor_admin++;
+        sessionStorage.setItem('contor_admin', contor_admin);
 
-        if (contor === 1) {
+        if (contor_admin === 1) {
             $('.loader').fadeIn(1500, function () {
                 setTimeout(function () {
                     $('.loader').fadeOut(1500, function () {
@@ -75,7 +79,7 @@ if(!isset($_SESSION['admin_name'])){
                 }, 1500);
             });
         } else {
-            $('.loader').addClass('hidden-homepage');
+            $('.loader').hide();
             $('.navbar').removeClass('hidden-homepage').addClass('visible');
             $('.container').removeClass('hidden-homepage').addClass('visible');
         }
