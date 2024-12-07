@@ -6,31 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
     <title>About</title>
-    <link rel="stylesheet" type="text/css" href="reviews_style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <img src="logo.jpg" class="logo">
-            <ul>
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="heading-about">
+    <div class="hidden-homepage navbar">
+        <header class="header">
+            <nav class="navbar">
+                <img src="logo.jpg" class="logo">
+                <ul>
+                    <li><a href="homepage.php">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="hidden-homepage heading-about">
         <h1>About Us</h1>
         <p>We're happy to sold beauties to beautiful people!</p>
-        <div class="container-about">
+        <div class="hidden-homepage container-about">
             <section class="about">
                 <div class="about-image">
                     <img src="poza_about.jpg" alt="About Us">
                 </div>
-                <div class="about-content">
+                <div class="hidden-homepage about-content">
                     <h2>Who We Are</h2>
                     <p>Estabilished in 2023 in Romania, Bucharest, " Da cazanu si ti dau altu' "
                         was made to deliver the
@@ -44,6 +46,18 @@
             </section>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.heading-about').removeClass('hidden-homepage').addClass('visible');
+                    $('.container-about').removeClass('hidden-homepage').addClass('visible');
+                    $('.about-content').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

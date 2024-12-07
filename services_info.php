@@ -7,8 +7,7 @@ if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
    exit();  
 }
 $is_admin = isset($_SESSION['admin_name']);
-$is_seller = isset($_SESSION['seller_name']);
-$query="SELECT ID_MASINA,MARCA,MODEL,PRET FROM masini";
+$query="SELECT ID_SERVICIU,ID_MASINA,COST,DATA_SERVICIULUI FROM servicii";
 $result = $conexiune->query($query);
 if(!$result){
    die("Error: ".mysqli_error($conexiune));
@@ -21,18 +20,14 @@ if(!$result){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles_for_tables.css">
-    <title>List of cars</title>
+    <title>Services information</title>
 </head>
 <body>
 
 <header>
     <nav class="navbar">
             <ul>
-            <?php if ($is_admin): ?>
         <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
-    <?php elseif ($is_seller): ?>
-        <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
-    <?php endif; ?>
             </ul>
     </nav>
 </header>
@@ -41,19 +36,19 @@ if(!$result){
    <table>
         <thead>
             <tr>
+                <th>ID_SERVICIU</th>
                 <th>ID_MASINA</th>
-                <th>MARCA</th>
-                <th>MODEL</th>
-                <th>PRET</th>
+                <th>COST</th>
+                <th>DATA</th>
             </tr>
         </thead>
         <tbody>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
+                    <td><?php echo htmlspecialchars($row['ID_SERVICIU']);?></td>
                     <td><?php echo htmlspecialchars($row['ID_MASINA']); ?></td>
-                    <td><?php echo htmlspecialchars($row['MARCA']); ?></td>
-                    <td><?php echo htmlspecialchars($row['MODEL']); ?></td>
-                    <td><?php echo htmlspecialchars($row['PRET']);?></td>
+                    <td><?php echo htmlspecialchars($row['COST']);?></td>
+                    <td><?php echo htmlspecialchars($row['DATA_SERVICIULUI']);?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>

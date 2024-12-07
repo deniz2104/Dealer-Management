@@ -4,36 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Delete Cars</title>
+    <title>Auto Dealer</title>
+    <link rel="stylesheet" type="text/css" href="homepage_style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/browse/@barba/core@2.10.3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
-<header>
-    <nav class="navbar">
-        <ul>
-            <?php if ($is_admin): ?>
-            <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
-            <?php elseif ($is_seller): ?>
-            <li><a href="seller_dashboard.php" class="btn">Seller Dashboard</a></li>
-            <?php endif; ?>
-            <li><a href="table_of_cars.php">Cars list</a></li>
-        </ul>
-    </nav>
-</header>
-
 <body>
-    <div class="container">
-        <div class="content">
-            <form action="delete.php" method="post" class="style-form">
-                <h3>Delete <span>car</span></h3>
+    <div class="hidden-homepage loader-wrapper">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
 
-                <h3>ID <span>Masina:</span></h3>
-                <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
-                <button type="submit" class="btn">Delete car</button>
-                <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
-            </form>
+    <div class="hidden-homepage message" id="message">
+        <h2>Welcome to Auto Dealer</h2>
+    </div>
+    <div class="navbar" data-barba="wrapper">
+        <header class="header">
+            <nav class="navbar">
+                <img src="logo.jpg" class="logo">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="content" data-barba="container" data-barba-namespace="home">
+        <h1>Auto Dealer</h1>
+        <p>Welcome to our auto dealership! We offer a wide range of cars, from luxury to budget.
+            <br>We're always here
+            to help you find the perfect car for your needs.
+        </p>
+        <div>
+            <a href="cars_list.php" class="btn"><span></span> Our cars</a>
+            <a href="login_client.php" class="btn"><span></span>Login as client</a>
+            <a href="dealer_auto.php" class="btn"><span></span>Login as dealer</a>
         </div>
     </div>
+
+    <script>
+        $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
+        $('#message').removeClass('hidden-homepage').addClass('visible');
+        $(document).ready(function () {
+            let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+
+            contor++;
+            sessionStorage.setItem('contor', contor);
+
+            if (contor === 1) {
+                setTimeout(function () {
+                    $('#message').fadeOut(2500, function () {
+                        setTimeout(function () {
+                            $('.loader-wrapper').fadeOut(1500, function () {
+
+                            });
+                        }, 1500);
+                    });
+                }, 1);
+            } else {
+                $('.loader-wrapper').addClass('hidden-homepage');
+                $('#message').addClass('hidden-homepage');
+                $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                $('.content').removeClass('hidden-homepage').addClass('visible');
+            }
+        });
+    </script>
 </body>
 
 </html>

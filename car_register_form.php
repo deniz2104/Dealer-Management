@@ -18,11 +18,12 @@ $is_seller = isset($_SESSION['seller_name']);
     <meta charset="UTF-8">
     <meta name="viewport" content="wanth=device-wanth, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Register Cars</title>
 </head>
 
 <header>
-        <nav class="navbar">
+        <nav class="hidden-homepage navbar">
             <ul>
             <?php if ($is_admin): ?>
         <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
@@ -34,6 +35,7 @@ $is_seller = isset($_SESSION['seller_name']);
 </header>
 
 <body>
+    <div class="hidden-homepage content-car-register">
     <form action="car_register.php" method="post" class="style-form">
         <h1>Register</h1>
         <label for="marca">Marca:</label>
@@ -45,7 +47,7 @@ $is_seller = isset($_SESSION['seller_name']);
         
 
         <label for="capacitate cilindrica">Capacitate cilindrica:</label>
-        <input type="capacitate cilindrica" name="capacitate cilindrica" an="capacitate cilindrica" required placeholder="1999 cm3" autocomplete="off">
+        <input type="number" name="capacitate cilindrica" an="capacitate cilindrica" required placeholder="1999 cm3" autocomplete="off">
         
 
 
@@ -54,7 +56,7 @@ $is_seller = isset($_SESSION['seller_name']);
         
 
         <label for="pret">Pret:</label>
-        <input type="text" name="pret" an="pret" required placeholder="75000$" autocomplete="off">
+        <input type="number" name="pret" an="pret" required placeholder="75000$" autocomplete="off">
 
         <label>ID_Masina:</label>
         <input type="text" name="id_masina" an="id_masina" required placeholder="xx" autocomplete="off">
@@ -62,6 +64,17 @@ $is_seller = isset($_SESSION['seller_name']);
         <p>Already having a car with a dealer assigned?<a href="dealer_auto.php">Log in</a></p>
         <p>Don't have a dealer for the car yet? <a href="register_form.php">Register dealer</a></p>
     </form>
+    </div>
+    <script>
+    $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.content-car-register').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
 </body>
 
 </html>

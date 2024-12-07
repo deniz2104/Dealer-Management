@@ -14,8 +14,7 @@ if (isset($_SESSION['admin_name'])){
 <!DOCTYPE html>
 <html lang="en">
 <!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat >
-<!TODO: sa am real time fetching cand dau refresh>
-<!TODO: animatii pentru fiecare pagina>
+<!TODO: animatii pentru fiecare pagina barba js>
 <!TODO: Sa am o pagina modala pentru afisarea masinilor>
 
 <head>
@@ -79,6 +78,10 @@ if (isset($_SESSION['admin_name'])){
     </div>
     <script>
         $(document).ready(function () {
+            let contor = parseInt(sessionStorage.getItem('contor')) || 0;
+            contor++;
+            sessionStorage.setItem('contor', contor);
+            if(contor==1){
             setTimeout(function () {
                 $('#message').fadeOut(2500, function () {
                     setTimeout(function () {
@@ -89,6 +92,12 @@ if (isset($_SESSION['admin_name'])){
                     }, 1500);
                 });
             }, 1);
+        }else{
+            $('.loader-wrapper').hide();
+            $('#message').hide();
+            $('.navbar').removeClass('hidden-homepage').addClass('visible');
+            $('.content').removeClass('hidden-homepage').addClass('visible');
+        }
         });
     </script>
 </body>
