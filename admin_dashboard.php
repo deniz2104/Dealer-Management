@@ -86,6 +86,13 @@ if(!isset($_SESSION['admin_name'])){
 
         document.getElementById('logout').addEventListener("click", function () {
             sessionStorage.clear();
+            contor = parseInt(sessionStorage.getItem('contor')) || 0;
+            contor++;
+            sessionStorage.setItem('contor', contor);
+            
+            contor_home = parseInt(sessionStorage.getItem('contor_home')) || 0;
+            contor_home++;
+            sessionStorage.setItem('contor_home', contor_home);
         });
     });
 </script>
