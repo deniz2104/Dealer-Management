@@ -20,7 +20,7 @@ $is_seller = isset($_SESSION['seller_name']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <title>Register</title>
+    <title>Register Dealer</title>
 </head>
 
 <header>

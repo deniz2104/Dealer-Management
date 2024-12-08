@@ -1,5 +1,4 @@
 <?php
-//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
 //TODO: un ajax pentru autcomplete la id
 @include 'config.php';
 session_start();
@@ -46,7 +45,7 @@ if(!$result){
 <body>
 <div class="hidden-homepage container">
     <div class="content" id="blur">
-    <form action="delete.php" method="post" class="style-form">
+    <form action="delete.php" method="post" class="style-form" onsubmit="return confirmDelete()">
         <h3>Delete <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>
@@ -114,6 +113,10 @@ if(!$result){
         function closeModal() {
             document.getElementById('pop-up-car-list').style.display = 'none';
             blur.classList.remove('active_element');
+        }
+
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this car?');
         }
 
     </script>

@@ -12,7 +12,12 @@ if(!isset($_SESSION['seller_name'])){
     <nav class="hidden-homepage navbar">
         <ul>
             <li> <a href="table_of_cars.php"><span></span>Cars list</a></li>
-            <li><a href="car_register_form.php"><span></span>Register a car</a></li>
+            <li> <a href="#"><span></span>Register +</a>
+                    <ul>
+                        <li><a href="car_register_form.php"><span></span>car</a></li>
+                        <li><a href="transaction_register_form.php"><span></span>transaction</a></li>
+                    </ul>
+            </li>
             <li><a href="delete_car_form.php"><span></span>Delete a car</a></li>
             <li><a href="edit_car_form.php"><span></span>Edit a car</a></li>
         </ul>

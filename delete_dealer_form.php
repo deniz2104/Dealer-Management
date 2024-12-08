@@ -6,7 +6,6 @@ if(!isset($_SESSION['admin_name'])){
     header('location:dealer_auto.php');
     exit();  
  }
-//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
 //TODO: un ajax pentru autcomplete la nume prenume si id
 list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
 $query_1="SELECT ID_VANZATOR,NUME, PRENUME, EMAIL, role FROM vanzatori WHERE NUME != ? OR PRENUME != ?";
@@ -45,7 +44,7 @@ if(!$result_1){
 <body>
 <div class="hidden-homepage container">
     <div class="content" id="blur">
-    <form action="delete_dealer.php" method="post" class="style-form">
+    <form action="delete_dealer.php" method="post" class="style-form" onsubmit="return cofirmDelete()">
         <h3>Delete <span>dealer</span></h3>
 
         <label for="nume">Nume:</label>
@@ -109,7 +108,10 @@ $(document).ready(function () {
         function closeModal_dealer() {
             document.getElementById('pop-up-dealer-list').style.display = 'none';
             blur.classList.remove('active_element');
+        }
 
+        function cofirmDelete() {
+            return confirm("Are you sure you want to delete this dealer?");
         }
     </script>
 </body>
