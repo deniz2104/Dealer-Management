@@ -14,8 +14,7 @@ if (isset($_SESSION['admin_name'])){
 <!DOCTYPE html>
 <html lang="en">
 <!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat >
-<!TODO: animatii pentru fiecare pagina barba js>
-<!TODO: Sa am o pagina modala pentru afisarea masinilor>
+<!TODO: Sa modularizez codul la final>
 
 <head>
     <meta charset="UTF-8">

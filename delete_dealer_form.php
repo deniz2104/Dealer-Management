@@ -8,6 +8,17 @@ if(!isset($_SESSION['admin_name'])){
  }
 //TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
 //TODO: un ajax pentru autcomplete la nume prenume si id
+list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
+$query_1="SELECT ID_VANZATOR,NUME, PRENUME, EMAIL, role FROM vanzatori WHERE NUME != ? OR PRENUME != ?";
+$stmt = $conexiune->prepare($query_1);
+$stmt->bind_param("ss", $admin_nume, $admin_prenume);
+$stmt->execute();
+
+$result_1=$stmt->get_result();
+
+if(!$result_1){
+   die("Error: ".mysqli_error($conexiune));
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +37,14 @@ if(!isset($_SESSION['admin_name'])){
         <nav class="hidden-homepage navbar">
             <ul>
             <li><a href="admin_dashboard.php"><span></span>Admin Dashboard</a></li>
-            <li><a href="table_of_dealers.php"><span></span>Dealers list</a></li>
+            <li><a href="#" onclick="openModal_dealer()"><span></span>Dealers list</a></li>
             </ul>
         </nav>
 </header>
 
 <body>
 <div class="hidden-homepage container">
-    <div class="content">
+    <div class="content" id="blur">
     <form action="delete_dealer.php" method="post" class="style-form">
         <h3>Delete <span>dealer</span></h3>
 
@@ -48,11 +59,39 @@ if(!isset($_SESSION['admin_name'])){
         <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
         <br>
         <button type="submit" class="btn">Delete dealer</button>
-        <h3>Want to register a dealer?<a href="register.php"><span>Register dealer</span></a></h3>
+        <h3>Want to register a dealer?<a href="register_form.php"><span>Register dealer</span></a></h3>
     </form>
     </div>
 </div>
+<div id="pop-up-dealer-list">
+        <div class="container-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nume</th>
+                    <th>Prenume</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <?php while ($row_1 = $result_1->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row_1['ID_VANZATOR']);?></td>
+                        <td><?php echo htmlspecialchars($row_1['NUME']); ?></td>
+                        <td><?php echo htmlspecialchars($row_1['PRENUME']); ?></td>
+                        <td><?php echo htmlspecialchars($row_1['EMAIL']); ?></td>
+                        <td><?php echo htmlspecialchars($row_1['role']);?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+        </table>
+        </div>
+    <a href="#" onclick="closeModal_dealer()" class="btn">Close</a>
+    </div>
 <script>
+var blur=document.getElementById('blur');
 $(document).ready(function () {
             setTimeout(function () {
                 setTimeout(function () {
@@ -61,6 +100,17 @@ $(document).ready(function () {
                 });
             }, 1);
         }, 1);
+
+        function openModal_dealer() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-dealer-list').style.display = 'block';
+        }
+
+        function closeModal_dealer() {
+            document.getElementById('pop-up-dealer-list').style.display = 'none';
+            blur.classList.remove('active_element');
+
+        }
     </script>
 </body>
 

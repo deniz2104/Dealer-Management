@@ -1,3 +1,24 @@
+<?php
+@include 'config.php';
+session_start();
+    $query="SELECT 
+    masini.ID_MASINA AS CarID,
+    masini.MARCA AS Brand,
+    masini.MODEL AS Model,
+    masini.PRET AS Price,
+    masini.AN_FABRICATIE AS YEAR_OF_FABRICATION
+FROM masini
+LEFT JOIN tranzactii ON masini.ID_MASINA = tranzactii.ID_MASINA
+WHERE tranzactii.ID_MASINA IS NULL";
+
+$result=$conexiune->query($query);
+
+if (!$result) {
+    die("Query Error: " . $conexiune->error);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,20 +58,58 @@
         </header>
     </div>
 
-    <div class="hidden-homepage content">
+    <div class="hidden-homepage content" id="blur">
         <h1>Auto Dealer</h1>
         <p>Welcome to our auto dealership! We offer a wide range of cars, from luxury to budget.
             <br>We're always here
             to help you find the perfect car for your needs.
         </p>
         <div>
-            <a href="cars_list.php" class="btn"><span></span> Our cars</a>
+            <a href="#" class="btn" onclick="openModal()"><span></span> Our cars</a>
             <a href="login_client.php" class="btn"><span></span>Login as client</a>
             <a href="dealer_auto.php" class="btn"><span></span>Login as dealer</a>
         </div>
     </div>
-
+    <div id="pop-up-car-list">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID_MASINA</th>
+                        <th>MARCA</th>
+                        <th>MODEL</th>
+                        <th>PRET</th>
+                        <th>AN FABRICATIE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row['CarID']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Brand']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Model']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Price']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['YEAR_OF_FABRICATION']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <a href="#" onclick="closeModal()" class="btn">Close</a>
+    </div>
     <script>
+    var blur=document.getElementById('blur');
     $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
     $('#message').removeClass('hidden-homepage').addClass('visible');
     $(document).ready(function () {
@@ -77,6 +136,15 @@
             $('.content').removeClass('hidden-homepage').addClass('visible');
         }
     });
+    function openModal() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-car-list').style.display = 'block';
+        }
+
+    function closeModal() {
+            document.getElementById('pop-up-car-list').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
 </script>
 </body>
 

@@ -6,8 +6,6 @@ if(!isset($_SESSION['seller_name'])){
    header('location:dealer_auto.php');
    exit();  
 }
-//TODO: cand dau logout sa nu mai am loader ul
-
 ?>
 
 <header>
