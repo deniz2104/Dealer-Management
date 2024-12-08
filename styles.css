@@ -322,6 +322,12 @@ header.navbar ul li ul li a:hover span {
   text-align: center;
 }
 
+.active_element {
+  filter: blur(25px);
+  pointer-events: none;
+  user-select: none;
+}
+
 .container .content h3 {
   margin-top: 5px;
   font-size: 30px;
@@ -521,4 +527,105 @@ header.navbar ul li ul li a:hover span {
     background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%,
       1ch 100%;
   }
+}
+
+.container-table table {
+  width: fit-content;
+  border-collapse: collapse;
+  border: none;
+  float: left;
+}
+
+.container-table th {
+  font-weight: bold;
+  font-size: 1em;
+  padding: 20px;
+  text-align: center;
+  color: hsl(270, 42%, 70%);
+  border: none;
+}
+
+.container-table td {
+  font-weight: normal;
+  text-align: center;
+  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0e1119;
+  -moz-box-shadow: 0 2px 2px -2px #0e1119;
+  box-shadow: 0 2px 2px -2px #0e1119;
+}
+
+.container-table {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  display: table;
+  padding: 10px;
+}
+
+.container-table td,
+.container-table th {
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 40px;
+  border: none;
+}
+
+.container-table tr:nth-child(odd) {
+  background-color: #323c50;
+}
+
+.container-table tr:nth-child(even) {
+  background-color: #2c3446;
+}
+
+.container-table th {
+  background-color: #323c50;
+}
+
+.container-table td {
+  color: white;
+}
+
+.container-table tr:hover {
+  background-color: hsl(270, 42%, 70%);
+}
+
+.container-table td:hover {
+  background-color: hsl(270, 42%, 70%);
+  color: white;
+  font-weight: bold;
+  transform: translate3d(6px, -6px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: line;
+}
+
+#pop-up-car-list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  background: white;
+  padding: 20px;
+  border-radius: 40px;
+  transition: 0.5s;
+  display: none;
+}
+
+#pop-up-dealer-list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  background: white;
+  padding: 20px;
+  border-radius: 40px;
+  transition: 0.5s;
+  display: none;
 }
