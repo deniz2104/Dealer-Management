@@ -50,6 +50,7 @@ if(!$result_1){
                     <ul>
                         <li><a href="car_register_form.php"><span></span>car</a></li>
                         <li><a href="register_form.php"><span></span>dealer</a></li>
+                        <li><a href="transaction_register_form.php"><span></span>transaction</a></li>
                     </ul>
                 </li>
                 <li> <a href="#"><span></span>Delete +</a>

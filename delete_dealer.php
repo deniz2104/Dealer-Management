@@ -36,7 +36,7 @@ $deleteQuery = $conexiune->prepare("DELETE FROM vanzatori WHERE NUME = ? AND PRE
 $deleteQuery->bind_param("ss", $nume, $prenume);
 
 if ($deleteQuery->execute()) {
-    echo "<script>confirm('Do you want to delete this dealer?.'); window.location.href='delete_dealer_form.php';</script>";
+    echo "<script>alert('This dealers was succesfully removed.'); window.location.href='delete_dealer_form.php';</script>";
 } else {
     echo "<script>alert('Error: Failed to delete. Please try again.'); window.location.href='delete_dealer_form.php';</script>";
 }

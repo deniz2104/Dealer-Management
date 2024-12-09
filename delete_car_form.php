@@ -1,6 +1,4 @@
 <?php
-//TODO: sa intreb daca e sigur ca vrea sa stearga (tot un fel de alertbox)
-//TODO: un ajax pentru autcomplete la id
 @include 'config.php';
 session_start();
 
@@ -46,12 +44,13 @@ if(!$result){
 <body>
 <div class="hidden-homepage container">
     <div class="content" id="blur">
-    <form action="delete.php" method="post" class="style-form">
+    <form action="delete.php" method="post" class="style-form" onsubmit="return confirmDelete()">
         <h3>Delete <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>
-        <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
+        <input type="text" name="id_masina" id="id_masina" required placeholder="xx" autocomplete="off">
         <br>
+        <div id="search_result" class="search-result"></div>
         <button type="submit" class="btn">Delete car</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
@@ -104,6 +103,27 @@ if(!$result){
                     $('.container').removeClass('hidden-homepage').addClass('visible');
                 });
             }, 1);
+            $('#id_masina').keyup(function(){
+                var input=$(this).val();
+
+
+                if(input !==""){
+                    $.ajax({
+                        url:'get_ids_delete_cars.php',
+                        method:'POST',
+                        data:{term:input},
+                        success:function(data){
+                            $('#search_result').html(data).show();
+                        },
+                        error: function () {
+                        console.error('An error occurred while fetching data.');
+                        }
+                    });
+                }
+                else{
+                    $('#search_result').hide();
+                }
+            });
         }, 1);
 
         function openModal() {
@@ -115,6 +135,12 @@ if(!$result){
             document.getElementById('pop-up-car-list').style.display = 'none';
             blur.classList.remove('active_element');
         }
+
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this car?');
+        }
+
+
 
     </script>
 </body>

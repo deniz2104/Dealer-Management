@@ -9,7 +9,7 @@ if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
 
 $is_admin = isset($_SESSION['admin_name']);
 $is_seller = isset($_SESSION['seller_name']);
-//TODO: Un ajax in care sa sugerez id ul
+//TODO: Un ajax in care sa sugerez id ul la fel ca la register car
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ $is_seller = isset($_SESSION['seller_name']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <title>Register</title>
+    <title>Register Dealer</title>
 </head>
 
 <header>
