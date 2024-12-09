@@ -6,7 +6,6 @@ if(!isset($_SESSION['admin_name'])){
     header('location:dealer_auto.php');
     exit();  
  }
-//TODO: un ajax pentru autcomplete la nume prenume si id
 list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
 $query_1="SELECT ID_VANZATOR,NUME, PRENUME, EMAIL, role FROM vanzatori WHERE NUME != ? OR PRENUME != ?";
 $stmt = $conexiune->prepare($query_1);
@@ -49,13 +48,15 @@ if(!$result_1){
 
         <label for="nume">Nume:</label>
         <input type="text" name="nume" id="nume" required placeholder="Introduceti numele" autocomplete="off">
-        
+        <div id="name_result" class="search-result"></div>
 
         <label for="prenume">Prenume:</label>
         <input type="text" name="prenume" id="prenume" required placeholder="Introduceti prenumele" autocomplete="off">
+        <div id="surname_result" class="search-result"></div>
 
         <label for="id">ID:</label>
         <input type="text" name="id" id="id" required placeholder="..." autocomplete="off">
+        <div id="id_result" class="search-result"></div>
         <br>
         <button type="submit" class="btn">Delete dealer</button>
         <h3>Want to register a dealer?<a href="register_form.php"><span>Register dealer</span></a></h3>
@@ -98,7 +99,41 @@ $(document).ready(function () {
                     $('.container').removeClass('hidden-homepage').addClass('visible');
                 });
             }, 1);
-        }, 1);
+        
+        function fetchResults(inputField, resultField, url, filters = {}) {
+        const value = $(inputField).val();
+        if (value !== "") {
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: { term: value, filters: filters },
+                success: function (data) {
+                    $(resultField).html(data).show();
+                },
+                error: function () {
+                    console.error('Error fetching data');
+                }
+            });
+        } else {
+            $(resultField).hide();
+        }
+    }
+
+    $('#nume').on('input', function () {
+        fetchResults('#nume', '#name_result', 'get_names.php');
+    });
+
+    $('#prenume').on('input', function () {
+        const name = $('#nume').val(); // Selected name
+        fetchResults('#prenume', '#surname_result', 'get_surnames.php', { name: name });
+    });
+
+    $('#id').on('input', function () {
+        const name = $('#nume').val(); 
+        const surname = $('#prenume').val();
+        fetchResults('#id', '#id_result', 'get_ids_delete_dealer.php', { name: name, surname: surname });
+    });
+}, 1);
 
         function openModal_dealer() {
             blur.classList.toggle('active_element');

@@ -1,5 +1,4 @@
 <?php
-//TODO: un ajax pentru autcomplete la id
 @include 'config.php';
 session_start();
 
@@ -49,8 +48,9 @@ if(!$result){
         <h3>Delete <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>
-        <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
+        <input type="text" name="id_masina" id="id_masina" required placeholder="xx" autocomplete="off">
         <br>
+        <div id="search_result" class="search-result"></div>
         <button type="submit" class="btn">Delete car</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
@@ -103,6 +103,27 @@ if(!$result){
                     $('.container').removeClass('hidden-homepage').addClass('visible');
                 });
             }, 1);
+            $('#id_masina').keyup(function(){
+                var input=$(this).val();
+
+
+                if(input !==""){
+                    $.ajax({
+                        url:'get_ids_delete_cars.php',
+                        method:'POST',
+                        data:{term:input},
+                        success:function(data){
+                            $('#search_result').html(data).show();
+                        },
+                        error: function () {
+                        console.error('An error occurred while fetching data.');
+                        }
+                    });
+                }
+                else{
+                    $('#search_result').hide();
+                }
+            });
         }, 1);
 
         function openModal() {
@@ -118,6 +139,8 @@ if(!$result){
         function confirmDelete() {
             return confirm('Are you sure you want to delete this car?');
         }
+
+
 
     </script>
 </body>

@@ -7,10 +7,11 @@
     <title>Auto Dealer</title>
     <link rel="stylesheet" type="text/css" href="homepage_style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/browse/@barba/core@2.10.3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
 <body>
-
     <div class="hidden-homepage loader-wrapper">
         <span class="dot"></span>
         <span class="dot"></span>
@@ -36,45 +37,93 @@
         </header>
     </div>
 
-    <div class="hidden-homepage content">
+    <div class="hidden-homepage content" id="blur">
         <h1>Auto Dealer</h1>
         <p>Welcome to our auto dealership! We offer a wide range of cars, from luxury to budget.
             <br>We're always here
             to help you find the perfect car for your needs.
         </p>
         <div>
-            <a href="cars_list.php" class="btn"><span></span> Our cars</a>
+            <a href="#" class="btn" onclick="openModal()"><span></span> Our cars</a>
             <a href="login_client.php" class="btn"><span></span>Login as client</a>
             <a href="dealer_auto.php" class="btn"><span></span>Login as dealer</a>
         </div>
     </div>
-
+    <div id="pop-up-car-list">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID_MASINA</th>
+                        <th>MARCA</th>
+                        <th>MODEL</th>
+                        <th>PRET</th>
+                        <th>AN FABRICATIE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row['CarID']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Brand']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Model']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['Price']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row['YEAR_OF_FABRICATION']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <a href="#" onclick="closeModal()" class="btn">Close</a>
+    </div>
     <script>
-        let cont = 0;
+        var blur = document.getElementById('blur');
         $('.loader-wrapper').removeClass('hidden-homepage').addClass('visible');
         $('#message').removeClass('hidden-homepage').addClass('visible');
-        window.onload = () => {
-            sessionStorage.setItem('animationPlayed', 'false');
-            setTimeout(function () {
-                $('#message').fadeOut(2500, function () {
-                    setTimeout(function () {
-                        $('.loader-wrapper').fadeOut(1500, function () {
-                            $('.navbar').removeClass('hidden-homepage').addClass('visible');
-                            $('.content').removeClass('hidden-homepage').addClass('visible');
-                            sessionStorage.setItem('animationPlayed', 'true');
-                            sessionStorage.setItem('contor', (parseInt(sessionStorage.getItem('contor')) || 0) + 1);
-                        });
-                    }, 1500);
-                });
-            }, 1);
-            window.onbeforeunload = function () {
-                sessionStorage.clear();
-            };
-            if (sessionStorage.getItem('contor') >= 1 && sessionStorage.getItem('animationPlayed') === 'false') {
-                $('.loader-wrapper').addClass('hidden-homepage');
-                $('#message').addClass('hidden-homepage');
+        $(document).ready(function () {
+            let contor_home = parseInt(sessionStorage.getItem('contor_home')) || 0;
+
+            contor_home++;
+            sessionStorage.setItem('contor_home', contor_home);
+
+            if (contor_home === 1) {
+                setTimeout(function () {
+                    $('#message').fadeOut(2500, function () {
+                        setTimeout(function () {
+                            $('.loader-wrapper').fadeOut(1500, function () {
+                                $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                                $('.content').removeClass('hidden-homepage').addClass('visible');
+                            });
+                        }, 1500);
+                    });
+                }, 1);
+            } else {
+                $('.loader-wrapper').hide();
+                $('#message').hide();
+                $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                $('.content').removeClass('hidden-homepage').addClass('visible');
             }
-        };
+        });
+        function openModal() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-car-list').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('pop-up-car-list').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
     </script>
 </body>
 

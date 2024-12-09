@@ -629,3 +629,12 @@ header.navbar ul li ul li a:hover span {
   transition: 0.5s;
   display: none;
 }
+
+.search-result {
+  background: transparent;
+  color: hsl(270, 42%, 70%);
+  font-weight: bold;
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+}

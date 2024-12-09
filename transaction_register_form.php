@@ -8,7 +8,7 @@ if(!isset($_SESSION['seller_name']) && !isset($_SESSION['admin_name'])){
 }
 $is_admin = isset($_SESSION['admin_name']);
 $is_seller = isset($_SESSION['seller_name']);
-//TODO: Un ajax in care sa sugerez id ul
+//TODO: Un ajax in care sa sugerez id ul la fel ca la celelate
 ?>
 
 <!DOCTYPE html>

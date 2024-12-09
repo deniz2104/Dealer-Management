@@ -16,7 +16,7 @@ $is_seller = isset($_SESSION['seller_name']);
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wanth=device-wanth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Register Cars</title>
@@ -59,7 +59,8 @@ $is_seller = isset($_SESSION['seller_name']);
         <input type="number" name="pret" an="pret" required placeholder="75000$" autocomplete="off">
 
         <label>ID_Masina:</label>
-        <input type="text" name="id_masina" an="id_masina" required placeholder="xx" autocomplete="off">
+        <input type="text" name="id_masina" id="id_masina" required placeholder="xx" autocomplete="off">
+        <div id="search_result" class="search-result"></div>
         <button type="submit" class="btn">Register</button>
         <p>Already having a car with a dealer assigned?<a href="dealer_auto.php">Log in</a></p>
         <p>Don't have a dealer for the car yet? <a href="register_form.php">Register dealer</a></p>
@@ -73,7 +74,27 @@ $is_seller = isset($_SESSION['seller_name']);
                     $('.content-car-register').removeClass('hidden-homepage').addClass('visible');
                 });
             }, 1);
-        }, 1);
+            $('#id_masina').keyup(function(){
+                var input=$(this).val();
+
+                if(input !==""){
+                    $.ajax({
+                        url:'get_unsed_ids.php',
+                        method:'POST',
+                        data:{term:input},
+                        success:function(data){
+                            $('#search_result').html(data).show();
+                        },
+                        error: function () {
+                        console.error('An error occurred while fetching data.');
+                        }
+                    });
+                }
+                else{
+                    $('#search_result').hide();
+                }
+            });
+}, 1);
     </script>
 </body>
 
