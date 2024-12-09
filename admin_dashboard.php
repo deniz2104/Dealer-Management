@@ -8,7 +8,7 @@ if(!isset($_SESSION['admin_name'])){
 }
 //TODO: la fiecare tranzitie cand vine sa am grija sa nu mai am overflow
 //TODO: sa nu pot ambele pagini modale in acelasi timp 
-//TODO: sa nu alea asa de late
+//TODO: sa fac delete si register pentru toate tabele relevante
 list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
 $query="SELECT ID_MASINA,MARCA,MODEL,AN_FABRICATIE,PRET FROM masini";
 $result = $conexiune->query($query);

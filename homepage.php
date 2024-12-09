@@ -106,6 +106,7 @@ if (!$result) {
                 </tbody>
             </table>
         </div>
+        <br>
         <a href="#" onclick="closeModal()" class="btn">Close</a>
     </div>
     <script>
