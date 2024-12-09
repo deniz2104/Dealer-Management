@@ -7,6 +7,8 @@ if(!isset($_SESSION['admin_name'])){
    exit();  
 }
 //TODO: la fiecare tranzitie cand vine sa am grija sa nu mai am overflow
+//TODO: sa nu pot ambele pagini modale in acelasi timp 
+//TODO: sa nu alea asa de late
 list($admin_nume,$admin_prenume)=explode(' ',$_SESSION['admin_name'],2);
 $query="SELECT ID_MASINA,MARCA,MODEL,AN_FABRICATIE,PRET FROM masini";
 $result = $conexiune->query($query);
@@ -79,6 +81,7 @@ if(!$result_1){
                     <?php echo htmlspecialchars($_SESSION['admin_name']); ?>
                 </span></h1>
             <a href="homepage.php" class="btn">Homepage</a>
+            <a href="statistics_about_dealership.php" class="btn">Statistics</a>
             <a href="logout.php" class="btn" id="logout">Logout</a>
         </div>
     </div>
@@ -119,6 +122,7 @@ if(!$result_1){
                 </tbody>
             </table>
         </div>
+        <br>
         <a href="#" onclick="closeModal()" class="btn">Close</a>
     </div>
     <div id="pop-up-dealer-list">

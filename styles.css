@@ -555,12 +555,11 @@ header.navbar ul li ul li a:hover span {
 }
 
 .container-table {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  width: 100%;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
   margin-top: 10px;
-  display: table;
   padding: 10px;
 }
 
@@ -609,7 +608,22 @@ header.navbar ul li ul li a:hover span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
+  width: 85vh; /* Adjust width to be relative to the viewport */
+  max-width: 1000px;
+  background: white;
+  padding: 20px;
+  border-radius: 40px;
+  transition: 0.5s;
+  display: none;
+}
+
+#pop-up-car-list-stats {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vh; /* Adjust width to be relative to the viewport */
+  max-width: 1000px;
   background: white;
   padding: 20px;
   border-radius: 40px;
@@ -622,9 +636,10 @@ header.navbar ul li ul li a:hover span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
+  width: 80vh;
+  max-width: 800px;
   background: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 40px;
   transition: 0.5s;
   display: none;

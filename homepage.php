@@ -46,7 +46,7 @@ if (!$result) {
     <div class="hidden-homepage navbar">
         <header class="header">
             <nav class="navbar">
-                <img src="logo.jpg" class="logo">
+            <img src="logo_firma_dealer.jpeg" class="logo">
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="about.html">About</a></li>
