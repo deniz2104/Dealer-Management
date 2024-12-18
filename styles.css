@@ -618,7 +618,9 @@ header.navbar ul li ul li a:hover span {
 }
 
 #pop-up-car-list-stats,
-#pop-up-clients-list {
+#pop-up-clients-list,
+#pop-up-service-list,
+#pop-up-service-stats {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -634,7 +636,8 @@ header.navbar ul li ul li a:hover span {
 
 #pop-up-dealer-list,
 #pop-up-dealer-list-stats,
-#pop-up-dealer-cars-list {
+#pop-up-dealer-cars-list,
+#pop-up-sellers-list {
   position: fixed;
   top: 50%;
   left: 50%;

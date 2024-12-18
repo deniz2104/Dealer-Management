@@ -8,7 +8,6 @@ if(!isset($_SESSION['admin_name'])){
 }
 
 $query="SELECT 
-    tranzactii.ID_TRANZACTIE AS TransactionID,
     clienti.NUME AS ClientName,
     clienti.PRENUME AS ClientSurname,
     vanzatori.NUME AS SellerName,
@@ -19,7 +18,8 @@ $query="SELECT
 FROM tranzactii
 INNER JOIN clienti ON tranzactii.ID_CLIENT = clienti.ID_CLIENT
 INNER JOIN vanzatori ON tranzactii.ID_VANZATOR = vanzatori.ID_VANZATOR
-INNER JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA;";
+INNER JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA
+WHERE tranzactii.DATA_TRANZACTIE > '2022-01-01';";
 
 $result=$conexiune->query($query);
 
@@ -29,7 +29,6 @@ if (!$result) {
 
 $query_1="
 SELECT 
-    clienti.ID_CLIENT AS ClientID,
     clienti.NUME AS ClientName,
     clienti.PRENUME AS ClientSurname
 FROM clienti
@@ -43,7 +42,6 @@ if (!$result_1) {
 }
 
 $query_2="SELECT 
-    vanzatori.ID_VANZATOR AS SellerID,
     vanzatori.NUME AS SellerName,
     vanzatori.PRENUME AS SellerSurname,
     COUNT(tranzactii.ID_MASINA) AS CarsSold
@@ -59,7 +57,6 @@ if (!$result_2) {
 
 
 $query_3="SELECT 
-    vanzatori.ID_VANZATOR AS SellerID,
     vanzatori.NUME AS SellerName,
     vanzatori.PRENUME AS SellerSurname,
     COUNT(vanzatori.ID_MASINA) AS UnsoldCars
@@ -77,7 +74,6 @@ if (!$result_3) {
 
 
 $query_4="SELECT 
-    clienti.ID_CLIENT as ID,
     clienti.NUME AS ClientName,
     clienti.PRENUME AS ClientSurname,
     masini.MARCA AS CarBrand,
@@ -94,6 +90,56 @@ $result_4=$conexiune->query($query_4);
 if (!$result_4) {
     die("Query Error: " . $conexiune->error);
 }
+
+
+$query_5="SELECT 
+    vanzatori.NUME AS SellerName,
+    vanzatori.PRENUME AS SellerSurname,
+    COUNT(tranzactii.ID_TRANZACTIE) AS TransactionCount,
+    GROUP_CONCAT(masini.MARCA SEPARATOR ', ') AS SoldCars
+FROM vanzatori
+LEFT JOIN tranzactii ON vanzatori.ID_VANZATOR = tranzactii.ID_VANZATOR
+LEFT JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA
+GROUP BY vanzatori.ID_VANZATOR, vanzatori.NUME;";
+
+$result_5=$conexiune->query($query_5);
+
+if (!$result_5) {
+    die("Query Error: " . $conexiune->error);
+}
+
+$query_6="SELECT 
+    vanzatori.NUME AS SellerName,
+    vanzatori.PRENUME AS SellerSurname,
+    masini.MARCA AS CarBrand,
+    masini.MODEL AS CarModel
+FROM vanzatori
+JOIN masini ON vanzatori.ID_MASINA = masini.ID_MASINA
+LEFT JOIN servicii ON masini.ID_MASINA = servicii.ID_MASINA
+WHERE servicii.ID_SERVICIU IS NULL;";
+
+$result_6=$conexiune->query($query_6);
+
+if (!$result_6) {
+    die("Query Error: " . $conexiune->error);
+}
+
+$query_7="SELECT 
+    masini.MARCA AS CarBrand,
+    masini.MODEL AS CarModel,
+    vanzatori.NUME AS SellerName,
+    vanzatori.PRENUME AS SellerSurname,
+    servicii.DESCRIERE AS Description
+FROM masini
+LEFT JOIN vanzatori ON masini.ID_MASINA = vanzatori.ID_MASINA
+LEFT JOIN servicii ON masini.ID_MASINA = servicii.ID_MASINA;";
+
+$result_7=$conexiune->query($query_7);
+
+if (!$result_7) {
+    die("Query Error: " . $conexiune->error);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -124,11 +170,14 @@ if (!$result_4) {
             <h1><span>
                     <?php echo htmlspecialchars($_SESSION['admin_name']); ?>
                 </span></h1>
-            <a href="#" class="btn" onclick="openModal()">Transactions details</a>
-            <a href="#" class="btn" onclick="openModal_customers()">Customers without buying a car</a>
+            <a href="#" class="btn" onclick="openModal()">Transactions details after 2022</a>
+            <a href="#" class="btn" onclick="openModal_customers()">Customers without bought car</a>
             <a href="#" class="btn" onclick="openModal_dealers()">Performance of dealers</a>
             <a href="#" class="btn" onclick="openModal_dealers_cars()" >Cars unsold by dealers</a>
             <a href="#" class="btn" onclick="openModal_clients()">Cars sold to clients</a>
+            <a href="#" class="btn" onclick="openModal_sellers()">Count Transactions for Each Seller and List Their Sold Cars</a>
+            <a href="#" class="btn" onclick="openModal_service()">Find Sellers Who Have Cars Without Any Service History</a>
+            <a href="#" class="btn" onclick="openModal_service_status()">List Cars with Their Assigned Sellers and Service Status</a>
         </div>
     </div>
     <div id="pop-up-car-list-stats">
@@ -136,7 +185,6 @@ if (!$result_4) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_Tranzactie</th>
                         <th>Nume_client</th>
                         <th>Prenume_client</th>
                         <th>Nume_vanzator</th>
@@ -150,9 +198,6 @@ if (!$result_4) {
                 <?php 
                 while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row['TransactionID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row['ClientName']); ?>
                         </td>
@@ -187,7 +232,6 @@ if (!$result_4) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_Client</th>
                         <th>Nume_client</th>
                         <th>Prenume_client</th>
                     </tr>
@@ -196,9 +240,6 @@ if (!$result_4) {
                 <?php 
                 while ($row_1= $result_1->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row_1['ClientID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row_1['ClientName']); ?>
                         </td>
@@ -218,7 +259,6 @@ if (!$result_4) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_Vanzator</th>
                         <th>Nume_Vanzator</th>
                         <th>Prenume_Vanzator</th>
                         <th>Masini_vandute</th>
@@ -228,9 +268,6 @@ if (!$result_4) {
                 <?php 
                 while ($row_2= $result_2->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row_2['SellerID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row_2['SellerName']); ?>
                         </td>
@@ -254,7 +291,6 @@ if (!$result_4) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_Vanzator</th>
                         <th>Nume_Vanzator</th>
                         <th>Prenume_Vanzator</th>
                         <th>Masini_nevandute</th>
@@ -264,9 +300,6 @@ if (!$result_4) {
                 <?php 
                 while ($row_3= $result_3->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row_3['SellerID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row_3['SellerName']); ?>
                         </td>
@@ -289,7 +322,6 @@ if (!$result_4) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_Client</th>
                         <th>Nume_client</th>
                         <th>Prenume_client</th>
                         <th>Marca_masina</th>
@@ -302,9 +334,6 @@ if (!$result_4) {
                 <?php 
                 while ($row_4 = $result_4->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row_4['ID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row_4['ClientName']); ?>
                         </td>
@@ -330,6 +359,115 @@ if (!$result_4) {
         </div>
         <br>
         <a href="#" onclick="closeModal_clients()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-sellers-list">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nume_Seller</th>
+                        <th>Prenume_Seller</th>
+                        <th>Numar_tranzactii</th>
+                        <th>Masini_vandute</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_5 = $result_5->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_5['SellerName']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_5['SellerSurname']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_5['TransactionCount']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_5['SoldCars']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_sellers()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-service-list">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nume_Seller</th>
+                        <th>Prenume_Seller</th>
+                        <th>Marca</th>
+                        <th>Model</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_6 = $result_6->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_6['SellerName']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_6['SellerSurname']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_6['CarBrand']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_6['CarModel']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_service()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-service-stats">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Marca_masina</th>
+                        <th>Model_masina</th>
+                        <th>Nume_vanzator</th>
+                        <th>Prenume_vanzator</th>
+                        <th>Descriere</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_7 = $result_7->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_7['CarBrand']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_7['CarModel']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_7['SellerName']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_7['SellerSurname']);?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_7['Description']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_service_status()" class="btn">Close</a>
     </div>
     <script>
         var blur=document.getElementById('blur');
@@ -386,6 +524,36 @@ if (!$result_4) {
 
     function closeModal_clients() {
             document.getElementById('pop-up-clients-list').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_sellers() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-sellers-list').style.display = 'block';
+        }
+
+    function closeModal_sellers() {
+            document.getElementById('pop-up-sellers-list').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_service() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-service-list').style.display = 'block';
+        }
+
+    function closeModal_service() {
+            document.getElementById('pop-up-service-list').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_service_status() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-service-stats').style.display = 'block';
+        }
+
+    function closeModal_service_status() {
+            document.getElementById('pop-up-service-stats').style.display = 'none';
             blur.classList.remove('active_element');
         }
     </script>

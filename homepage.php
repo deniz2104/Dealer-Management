@@ -2,7 +2,6 @@
 @include 'config.php';
 session_start();
     $query="SELECT 
-    masini.ID_MASINA AS CarID,
     masini.MARCA AS Brand,
     masini.MODEL AS Model,
     masini.PRET AS Price,
@@ -75,7 +74,6 @@ if (!$result) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID_MASINA</th>
                         <th>MARCA</th>
                         <th>MODEL</th>
                         <th>PRET</th>
@@ -86,9 +84,6 @@ if (!$result) {
                 <?php 
                 while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?php echo htmlspecialchars($row['CarID']); ?>
-                        </td>
                         <td>
                             <?php echo htmlspecialchars($row['Brand']); ?>
                         </td>
