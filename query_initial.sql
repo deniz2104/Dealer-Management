@@ -143,3 +143,10 @@ ALTER TABLE tranzactii
 DROP FOREIGN KEY tranzactii_ibfk_3;
 ALTER TABLE tranzactii
 ADD CONSTRAINT tranzactii_ibfk_3 foreign key(ID_VANZATOR) REFERENCES vanzatori(ID_VANZATOR) ON DELETE RESTRICT;
+
+INSERT INTO servicii
+VALUES (150,20,"detailing",1500,'2023-10-12'),
+		(151,24,"schimb filtre",500,'2024-05-20'),
+        (152,26,"schimbare cauciucuri",800,'2024-12-29'),
+        (153,25,"schimb ulei",300,'2023-02-23'),
+        (154,23,"detailing interior",500,'2024-08-24');

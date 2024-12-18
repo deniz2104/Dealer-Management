@@ -13,7 +13,6 @@ if (isset($_SESSION['admin_name'])){
 
 <!DOCTYPE html>
 <html lang="en">
-<!TODO: In loc de alert din javascript sa fac un alertbox tot js cusotmizat >
 <!TODO: Sa modularizez codul la final>
 
 <head>
