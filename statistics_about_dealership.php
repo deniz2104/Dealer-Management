@@ -7,139 +7,14 @@ if(!isset($_SESSION['admin_name'])){
    exit();  
 }
 
-$query="SELECT 
-    clienti.NUME AS ClientName,
-    clienti.PRENUME AS ClientSurname,
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    masini.MARCA AS CarBrand,
-    masini.MODEL AS CarModel,
-    tranzactii.DATA_TRANZACTIE AS TransactionDate
-FROM tranzactii
-INNER JOIN clienti ON tranzactii.ID_CLIENT = clienti.ID_CLIENT
-INNER JOIN vanzatori ON tranzactii.ID_VANZATOR = vanzatori.ID_VANZATOR
-INNER JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA
-WHERE tranzactii.DATA_TRANZACTIE > '2022-01-01';";
-
-$result=$conexiune->query($query);
-
-if (!$result) {
-    die("Query Error: " . $conexiune->error);
-}
-
-$query_1="
-SELECT 
-    clienti.NUME AS ClientName,
-    clienti.PRENUME AS ClientSurname
-FROM clienti
-LEFT JOIN tranzactii ON clienti.ID_CLIENT = tranzactii.ID_CLIENT
-WHERE tranzactii.ID_CLIENT IS NULL;";
-
-$result_1=$conexiune->query($query_1);
-
-if (!$result_1) {
-    die("Query Error: " . $conexiune->error);
-}
-
-$query_2="SELECT 
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    COUNT(tranzactii.ID_MASINA) AS CarsSold
-FROM vanzatori
-LEFT JOIN tranzactii ON vanzatori.ID_VANZATOR = tranzactii.ID_VANZATOR
-GROUP BY vanzatori.ID_VANZATOR, vanzatori.NUME, vanzatori.PRENUME;";
-
-$result_2=$conexiune->query($query_2);
-
-if (!$result_2) {
-    die("Query Error: " . $conexiune->error);
-}
-
-
-$query_3="SELECT 
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    COUNT(vanzatori.ID_MASINA) AS UnsoldCars
-FROM vanzatori
-LEFT JOIN tranzactii ON vanzatori.ID_VANZATOR = tranzactii.ID_VANZATOR
-LEFT JOIN masini ON masini.ID_MASINA = tranzactii.ID_MASINA
-WHERE tranzactii.ID_MASINA IS NULL
-GROUP BY vanzatori.ID_VANZATOR, vanzatori.NUME, vanzatori.PRENUME;";
-
-$result_3=$conexiune->query($query_3);
-
-if (!$result_3) {
-    die("Query Error: " . $conexiune->error);
-}
-
-
-$query_4="SELECT 
-    clienti.NUME AS ClientName,
-    clienti.PRENUME AS ClientSurname,
-    masini.MARCA AS CarBrand,
-    masini.MODEL AS CarModel,
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname
-FROM tranzactii
-INNER JOIN clienti ON tranzactii.ID_CLIENT = clienti.ID_CLIENT
-INNER JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA
-INNER JOIN vanzatori ON tranzactii.ID_VANZATOR = vanzatori.ID_VANZATOR;";
-
-$result_4=$conexiune->query($query_4);
-
-if (!$result_4) {
-    die("Query Error: " . $conexiune->error);
-}
-
-
-$query_5="SELECT 
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    COUNT(tranzactii.ID_TRANZACTIE) AS TransactionCount,
-    GROUP_CONCAT(masini.MARCA SEPARATOR ', ') AS SoldCars
-FROM vanzatori
-LEFT JOIN tranzactii ON vanzatori.ID_VANZATOR = tranzactii.ID_VANZATOR
-LEFT JOIN masini ON tranzactii.ID_MASINA = masini.ID_MASINA
-GROUP BY vanzatori.ID_VANZATOR, vanzatori.NUME;";
-
-$result_5=$conexiune->query($query_5);
-
-if (!$result_5) {
-    die("Query Error: " . $conexiune->error);
-}
-
-$query_6="SELECT 
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    masini.MARCA AS CarBrand,
-    masini.MODEL AS CarModel
-FROM vanzatori
-JOIN masini ON vanzatori.ID_MASINA = masini.ID_MASINA
-LEFT JOIN servicii ON masini.ID_MASINA = servicii.ID_MASINA
-WHERE servicii.ID_SERVICIU IS NULL;";
-
-$result_6=$conexiune->query($query_6);
-
-if (!$result_6) {
-    die("Query Error: " . $conexiune->error);
-}
-
-$query_7="SELECT 
-    masini.MARCA AS CarBrand,
-    masini.MODEL AS CarModel,
-    vanzatori.NUME AS SellerName,
-    vanzatori.PRENUME AS SellerSurname,
-    servicii.DESCRIERE AS Description
-FROM masini
-LEFT JOIN vanzatori ON masini.ID_MASINA = vanzatori.ID_MASINA
-LEFT JOIN servicii ON masini.ID_MASINA = servicii.ID_MASINA;";
-
-$result_7=$conexiune->query($query_7);
-
-if (!$result_7) {
-    die("Query Error: " . $conexiune->error);
-}
-
+@include 'query_statistics_1.php';
+@include 'query_statistics_2.php';
+@include 'query_statistics_3.php';
+@include 'query_statistics_4.php';
+@include  'query_statistics_5.php';
+@include 'query_statistics_6.php';
+@include  'query_statistics_7.php';
+@include 'query_statistics_8.php';
 ?>
 
 <!DOCTYPE html>
