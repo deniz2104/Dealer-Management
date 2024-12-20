@@ -150,3 +150,5 @@ VALUES (150,20,"detailing",1500,'2023-10-12'),
         (152,26,"schimbare cauciucuri",800,'2024-12-29'),
         (153,25,"schimb ulei",300,'2023-02-23'),
         (154,23,"detailing interior",500,'2024-08-24');
+        
+	
