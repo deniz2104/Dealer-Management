@@ -15,6 +15,10 @@ if(!isset($_SESSION['admin_name'])){
 @include 'query_statistics_6.php';
 @include  'query_statistics_7.php';
 @include 'query_statistics_8.php';
+@include 'query_complex_statistics_1.php';
+@include 'query_complex_statistics_2.php';
+@include 'query_complex_statistics_3.php';
+@include 'query_complex_statistics_4.php';
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +57,10 @@ if(!isset($_SESSION['admin_name'])){
             <a href="#" class="btn" onclick="openModal_sellers()">Count Transactions for Each Seller and List Their Sold Cars</a>
             <a href="#" class="btn" onclick="openModal_service()">Find Sellers Who Have Cars Without Any Service History</a>
             <a href="#" class="btn" onclick="openModal_service_status()">List Cars with Their Assigned Sellers and Service Status</a>
+            <a href="#" class="btn" onclick="openModal_clients_stats()">Find Clients Who Have Purchased More Than One Car</a>
+            <a href="#" class="btn" onclick="openModal_top_3()">Top 3 Sellers by Cars Sold </a>
+            <a href="#" class="btn" onclick="openModal_avg_stats()">Calculate Average Price of Cars Sold by Each Seller Using a Subquery</a>
+            <a href="#" class="btn" onclick="openModal_2023()">Find Insurances After the Earliest Transaction in 2023</a>
         </div>
     </div>
     <div id="pop-up-car-list-stats">
@@ -344,6 +352,130 @@ if(!isset($_SESSION['admin_name'])){
         <br>
         <a href="#" onclick="closeModal_service_status()" class="btn">Close</a>
     </div>
+    <div id="pop-up-clients-stats">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nume</th>
+                        <th>Prenume</th>
+                        <th>Numar_masini</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_8 = $result_8->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_8['ClientName']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_8['ClientSurname']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_8['CarsPurchased']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_clients_stats()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-top-3">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nume_vanztor</th>
+                        <th>Prenume_vanzator</th>
+                        <th>Masini vandute</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_9 = $result_9->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_9['SellerName']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_9['SellerSurname']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_9['CarsSold']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_top_3()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-avg-stats">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nume_vanztor</th>
+                        <th>Prenume_vanzator</th>
+                        <th>Pret Mediu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_10 = $result_10->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_10['SellerName']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_10['SellerSurname']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_10['AverageSalePrice']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_avg_stats()" class="btn">Close</a>
+    </div>
+    <div id="pop-up-2023">
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Marca_masina</th>
+                        <th>Model_masina</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                while ($row_11 = $result_11->fetch_assoc()): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($row_11['CarBrand']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_11['CarModel']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($row_11['TransactionDate']);?>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a href="#" onclick="closeModal_2023()" class="btn">Close</a>
+    </div>
     <script>
         var blur=document.getElementById('blur');
         $(document).ready(function () {
@@ -429,6 +561,46 @@ if(!isset($_SESSION['admin_name'])){
 
     function closeModal_service_status() {
             document.getElementById('pop-up-service-stats').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_clients_stats() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-clients-stats').style.display = 'block';
+        }
+
+    function closeModal_clients_stats() {
+            document.getElementById('pop-up-clients-stats').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_top_3() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-top-3').style.display = 'block';
+        }
+
+    function closeModal_top_3() {
+            document.getElementById('pop-up-top-3').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_avg_stats() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-avg-stats').style.display = 'block';
+        }
+
+    function closeModal_avg_stats() {
+            document.getElementById('pop-up-avg-stats').style.display = 'none';
+            blur.classList.remove('active_element');
+        }
+
+        function openModal_2023() {
+            blur.classList.toggle('active_element');
+            document.getElementById('pop-up-2023').style.display = 'block';
+        }
+
+    function closeModal_2023() {
+            document.getElementById('pop-up-2023').style.display = 'none';
             blur.classList.remove('active_element');
         }
     </script>

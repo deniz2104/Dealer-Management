@@ -637,7 +637,11 @@ header.navbar ul li ul li a:hover span {
 #pop-up-dealer-list,
 #pop-up-dealer-list-stats,
 #pop-up-dealer-cars-list,
-#pop-up-sellers-list {
+#pop-up-sellers-list,
+#pop-up-avg-stats,
+#pop-up-cars-2023,
+#pop-up-top-3,
+#pop-up-clients-stats {
   position: fixed;
   top: 50%;
   left: 50%;
