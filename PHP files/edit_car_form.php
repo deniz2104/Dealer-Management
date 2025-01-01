@@ -23,9 +23,9 @@ if(!$result){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <title>Delete Cars</title>
+    <title>Edit Cars</title>
 </head>
 
 <header>
@@ -44,14 +44,16 @@ if(!$result){
 <body>
 <div class="hidden-homepage container">
     <div class="content" id="blur">
-    <form action="delete.php" method="post" class="style-form" onsubmit="return confirmDelete()">
-        <h3>Delete <span>car</span></h3>
+    <form action="edit.php" method="post" class="style-form">
+        <h3>Edit <span>car</span></h3>
 
         <h3>ID <span>Masina:</span></h3>
-        <input type="text" name="id_masina" id="id_masina" required placeholder="xx" autocomplete="off">
+        <input type="text" name="id_masina" required placeholder="xx" autocomplete="off">
         <br>
-        <div id="search_result" class="search-result"></div>
-        <button type="submit" class="btn">Delete car</button>
+        <h3><span>Pret:</span></h3>
+        <input type="number" name="pret" required placeholder="$$$$$" autocomplete="off">
+        <br>
+        <button type="submit" class="btn">Edit price</button>
         <h3>Want to register a car?<a href="car_register_form.php"><span>Register car</span></a></h3>
     </form>
 </div>
@@ -94,38 +96,17 @@ if(!$result){
         </div>
         <a href="#" onclick="closeModal()" class="btn">Close</a>
     </div>
-<script>
-    var blur=document.getElementById('blur');
-    $(document).ready(function () {
+<script>         
+var blur=document.getElementById('blur');
+$(document).ready(function () {
             setTimeout(function () {
                 setTimeout(function () {
                     $('.navbar').removeClass('hidden-homepage').addClass('visible');
                     $('.container').removeClass('hidden-homepage').addClass('visible');
                 });
             }, 1);
-            $('#id_masina').keyup(function(){
-                var input=$(this).val();
-
-
-                if(input !==""){
-                    $.ajax({
-                        url:'get_ids_delete_cars.php',
-                        method:'POST',
-                        data:{term:input},
-                        success:function(data){
-                            $('#search_result').html(data).show();
-                        },
-                        error: function () {
-                        console.error('An error occurred while fetching data.');
-                        }
-                    });
-                }
-                else{
-                    $('#search_result').hide();
-                }
-            });
         }, 1);
-
+        
         function openModal() {
             blur.classList.toggle('active_element');
             document.getElementById('pop-up-car-list').style.display = 'block';
@@ -135,12 +116,6 @@ if(!$result){
             document.getElementById('pop-up-car-list').style.display = 'none';
             blur.classList.remove('active_element');
         }
-
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this car?');
-        }
-
-
 
     </script>
 </body>

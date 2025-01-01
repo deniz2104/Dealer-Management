@@ -7,18 +7,18 @@ if(!isset($_SESSION['admin_name'])){
    exit();  
 }
 
-@include 'query_statistics_1.php';
-@include 'query_statistics_2.php';
-@include 'query_statistics_3.php';
-@include 'query_statistics_4.php';
-@include  'query_statistics_5.php';
-@include 'query_statistics_6.php';
-@include  'query_statistics_7.php';
-@include 'query_statistics_8.php';
-@include 'query_complex_statistics_1.php';
-@include 'query_complex_statistics_2.php';
-@include 'query_complex_statistics_3.php';
-@include 'query_complex_statistics_4.php';
+@include('../Simple queries/query_statistics_1.php');
+@include('../Simple queries/query_statistics_2.php');
+@include('../Simple queries/query_statistics_3.php');
+@include('../Simple queries/query_statistics_4.php');
+@include ('../Simple queries/query_statistics_5.php');
+@include('../Simple queries/query_statistics_6.php');
+@include ('../Simple queries/query_statistics_7.php');
+@include ('../Simple queries/query_statistics_8.php');
+@include ('../Complex queries/query_complex_statistics_1.php');
+@include ('../Complex queries/query_complex_statistics_2.php');
+@include('../Complex queries/query_complex_statistics_3.php');
+@include('../Complex queries/query_complex_statistics_4.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_name'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Statistics Page</title>
 </head>

@@ -11,7 +11,6 @@ if(!isset($_SESSION['seller_name'])){
 <header>
     <nav class="hidden-homepage navbar">
         <ul>
-            <li> <a href="table_of_cars.php"><span></span>Cars list</a></li>
             <li> <a href="#"><span></span>Register +</a>
                     <ul>
                         <li><a href="car_register_form.php"><span></span>car</a></li>
@@ -30,7 +29,7 @@ if(!isset($_SESSION['seller_name'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Seller Page</title>
 </head>

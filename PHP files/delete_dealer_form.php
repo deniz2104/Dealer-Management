@@ -25,7 +25,7 @@ if(!$result_1){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>Delete Dealer</title>
 </head>
@@ -124,7 +124,7 @@ $(document).ready(function () {
     });
 
     $('#prenume').on('input', function () {
-        const name = $('#nume').val(); // Selected name
+        const name = $('#nume').val(); 
         fetchResults('#prenume', '#surname_result', 'get_surnames.php', { name: name });
     });
 
