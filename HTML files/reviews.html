@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <link rel="stylesheet" type="text/css" href="../Styles/homepage_style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+    <div class="hidden-homepage navbar">
+        <header class="header">
+            <nav class="navbar">
+                <img src="../Photos/logo.jpg" class="logo">
+                <ul>
+                    <li><a href="../PHP files/homepage.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="hidden-homepage wrapper-reviews">
+        <h2>What our clients say:</h2>
+        <div class="testimonial-container" id="testimonial-container"></div>
+        <button id="prev">&lt;</button>
+        <button id="next">&gt;</button>
+    </div>
+    <script src="../Scripts/testimonials.js"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.wrapper-reviews').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
+</body>
+
+</html>

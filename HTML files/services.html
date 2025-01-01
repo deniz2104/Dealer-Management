@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" type="text/css" href="../Styles/homepage_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+    <div class="hidden-homepage navbar">
+        <header class="header">
+            <nav class="navbar">
+                <img src="../Photos/logo.jpg" class="logo">
+                <ul>
+                    <li><a href="../PHP files/homepage.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="hidden-homepage services-container">
+        <div id="services-section">
+            <h2>Services</h2>
+            <p>Our services include automotive maintenance, car repairs, car parts, and exceptional detailing. We offer
+                high-quality work and
+                customer satisfaction.</p>
+            <div class="cards">
+                <div class="card">
+                    <i class="fa fa-wrench"></i>
+                    <div class="description">
+                        <h3>Maintenance</h3>
+                        <p>- seasonal check-ups<br>
+                            - air filter<br>
+                            - oil and filters<br>
+                            - replace windshield<br>
+                            - battery check <br>
+                            - change tires
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fa fa-handshake"></i>
+                    <div class="description">
+                        <h3>Assurance</h3>
+                        <p>- service contract transferrable<br>
+                            - car rental,towing <br>
+                            - car parts available <br>
+                            - easy payment plans <br>
+                            - cancel any time<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fa fa-car"></i>
+                    <div class="description">
+                        <h3>Detailing</h3>
+                        <p>- full interior <br>
+                            - full exterior <br>
+                            - experience packet<br>
+                            - premium detailing<br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                setTimeout(function () {
+                    $('.navbar').removeClass('hidden-homepage').addClass('visible');
+                    $('.services-container').removeClass('hidden-homepage').addClass('visible');
+                });
+            }, 1);
+        }, 1);
+    </script>
+</body>
+
+</html>
