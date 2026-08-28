@@ -2,7 +2,7 @@
 
 ## Descriere:
 
-Acest proiect este o aplicație web dedicată gestionării unui dealer auto, care oferă funcționalități precum gestionarea vânzătorilor, clienților, mașinilor și tranzacțiilor. Aplicația permite conectarea utilizatorilor cu diferite roluri (“admin” sau “vânzător”) și facilitează monitorizarea activităților de vânzări.
+Acest proiect este o aplicație web dedicată gestionării unui dealer auto, care oferă funcționalități precum gestionarea vânzătorilor, clienților, mașinilor și tranzacțiilor. Aplicația permite conectarea utilizatorilor cu diferite roluri ("admin" sau "vânzător") și facilitează monitorizarea activităților de vânzări.
 
 ## Motivația și obiectivele proiectului:
 
